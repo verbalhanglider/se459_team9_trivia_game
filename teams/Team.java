@@ -9,7 +9,7 @@ public class Team {
 	 * If you want to change the team name, use the setName method with a String passed as  the parameter.
 	 */
 	private String name;
-	private ArrayList<String> members;
+	private ArrayList<Player> members;
 	private int size;
 	private int maximumMembers;
 	
@@ -19,7 +19,7 @@ public class Team {
 		 * a size of 0 and maxmiumMembers set to 2
 		 */
 		name = "A New Team";
-		members = new ArrayList<String>();
+		members = new ArrayList<Player>();
 		this.setSize(0);
 		this.setMaximumMembers(2);
 	}
@@ -71,7 +71,11 @@ public class Team {
 		/*
 		 * Returns a list of strings of the player names who are members of this team.
 		 */
-		return this.members;
+		ArrayList<String> output = new ArrayList<String>();
+		for (int i=0; i < this.members.size(); i++) {
+			output.add(this.members.get(i).getName());
+		}
+		return output;
 	}
 	
 	public void addMember(String memberName) {
@@ -83,7 +87,7 @@ public class Team {
 		 * 
 		 */
 		if (this.getSize() < this.getMaximumMembers()) {
-			members.add(memberName);
+			members.add(new Player(memberName));
 			this.setSize(this.getSize() + 1);
 		}
 		else {
