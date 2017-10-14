@@ -1,3 +1,5 @@
+
+
 package ui;
 
 import java.awt.BorderLayout;
@@ -7,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -14,11 +17,19 @@ import java.awt.Graphics2D;
 import java.awt.Rectangle;
 
 import javax.swing.JButton;
+import javax.swing.JDialog;
+
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
+
+import teams.Team;
+
 import java.awt.Color;
 import javax.swing.JTextField;
+
+import teams.*;
 
 public class GameSettingPage extends JFrame {
 
@@ -28,10 +39,10 @@ public class GameSettingPage extends JFrame {
 	private JTextField PurplePlayer2;
 	private JTextField GreenPlayer1;
 	private JTextField GreenPlayer2;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField BluePlayer1;
+	private JTextField BluePlayer2;
+	private JTextField YellowPlayer1;
+	private JTextField YellowPlayer2;
 
 	/**
 	 * Launch the application.
@@ -69,9 +80,66 @@ public class GameSettingPage extends JFrame {
 		JButton btnStartGame = new JButton("START GAME");
 		btnStartGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PlayingPage playingPage = new PlayingPage();
-				playingPage.setVisible(true);
-				frame.setVisible(false);				
+				String player1 = PurplePlayer1.getText();
+				String player2 = PurplePlayer2.getText();
+				String player3 = GreenPlayer1.getText();
+				String player4 = GreenPlayer2.getText();
+				String player5 = BluePlayer1.getText();
+				String player6 = BluePlayer2.getText();
+				String player7 = YellowPlayer1.getText();
+				String player8 = YellowPlayer2.getText();
+
+				ArrayList<Team> allTeams = new ArrayList<Team>();
+				
+				if (player1.contains("Enter name") || player2.contains("Enter anme")) {
+					
+				} else {
+					Team newTeam = new Team("Green Team");
+					newTeam.addMember(player1);
+					newTeam.addMember(player2);
+					allTeams.add(newTeam);
+					
+				}
+				
+				if (player3.contains("Enter name") || player4.contains("Enter name")) {
+					System.out.println(player3);
+					System.out.println("hello");
+					
+				} else {
+					Team newTeam = new Team("Blue Team");
+					newTeam.addMember(player3);
+					newTeam.addMember(player4);
+					allTeams.add(newTeam);
+				}
+				
+				if (player5.contains("Enter name") || player6.contains("Enter name")) {
+					
+				} else {
+					Team newTeam = new Team("Purple Team");
+					newTeam.addMember(player5);
+					newTeam.addMember(player6);
+					allTeams.add(newTeam);
+				}
+				
+				if (player7.contains("Enter name") || player8.contains("Enter name")) {
+					
+				} else {
+					Team newTeam = new Team("Yellow Team");
+					newTeam.addMember(player7);
+					newTeam.addMember(player8);
+					allTeams.add(newTeam);
+				}
+				
+				if (allTeams.size() == 2 || allTeams.size() == 4) {
+					PlayingPage playingPage = new PlayingPage(allTeams);
+					playingPage.setVisible(true);
+					frame.setVisible(false);
+				} else {
+					JOptionPane optionPane = new JOptionPane("There must be at least 2 teams with both players defined",JOptionPane.WARNING_MESSAGE);
+					JDialog dialog = optionPane.createDialog("Warning!");
+					dialog.setAlwaysOnTop(true); // to show top of all other application
+					dialog.setVisible(true); // to visible the dialog	
+				}			
 			}
 		});
 		
@@ -92,7 +160,7 @@ public class GameSettingPage extends JFrame {
 		panelPurple.add(lblPurpleTeam);
 		
 		PurplePlayer1 = new JTextField();
-		PurplePlayer1.setText("Enter Name");
+		PurplePlayer1.setText("Enter name");
 		PurplePlayer1.setForeground(Color.BLACK);		
 		PurplePlayer1.setColumns(10);
 		PurplePlayer1.setBorder(null);
@@ -100,7 +168,7 @@ public class GameSettingPage extends JFrame {
 		panelPurple.add(PurplePlayer1);
 				
 		PurplePlayer2 = new JTextField();
-		PurplePlayer2.setText("Enter Name");
+		PurplePlayer2.setText("Enter name");
 		PurplePlayer2.setForeground(Color.BLACK);
 		PurplePlayer2.setColumns(10);
 		PurplePlayer2.setBorder(null);
@@ -120,7 +188,7 @@ public class GameSettingPage extends JFrame {
 		panelGreen.add(lblGreenTeam);
 		
 		GreenPlayer1 = new JTextField();
-		GreenPlayer1.setText("Enter Name");
+		GreenPlayer1.setText("Enter name");
 		GreenPlayer1.setForeground(Color.BLACK);
 		GreenPlayer1.setColumns(10);
 		GreenPlayer1.setBorder(null);
@@ -128,7 +196,7 @@ public class GameSettingPage extends JFrame {
 		panelGreen.add(GreenPlayer1);
 		
 		GreenPlayer2 = new JTextField();
-		GreenPlayer2.setText("Enter Name");
+		GreenPlayer2.setText("Enter name");
 		GreenPlayer2.setForeground(Color.BLACK);
 		GreenPlayer2.setColumns(10);
 		GreenPlayer2.setBorder(null);
@@ -146,21 +214,22 @@ public class GameSettingPage extends JFrame {
 		lblBlueTeam.setBounds(38, 6, 115, 16);
 		panel.add(lblBlueTeam);
 		
-		textField = new JTextField();
-		textField.setText("Enter Name");
-		textField.setForeground(Color.BLACK);
-		textField.setColumns(10);
-		textField.setBorder(null);
-		textField.setBounds(23, 24, 130, 26);
-		panel.add(textField);
 		
-		textField_1 = new JTextField();
-		textField_1.setText("Enter Name");
-		textField_1.setForeground(Color.BLACK);
-		textField_1.setColumns(10);
-		textField_1.setBorder(null);
-		textField_1.setBounds(23, 59, 130, 26);
-		panel.add(textField_1);
+		BluePlayer1 = new JTextField();
+		BluePlayer1.setText("Enter name");
+		BluePlayer1.setForeground(Color.BLACK);
+		BluePlayer1.setColumns(10);
+		BluePlayer1.setBorder(null);
+		BluePlayer1.setBounds(23, 24, 130, 26);
+		panel.add(BluePlayer1);
+		
+		BluePlayer2 = new JTextField();
+		BluePlayer2.setText("Enter name");
+		BluePlayer2.setForeground(Color.BLACK);
+		BluePlayer2.setColumns(10);
+		BluePlayer2.setBorder(null);
+		BluePlayer2.setBounds(23, 59, 130, 26);
+		panel.add(BluePlayer2);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setLayout(null);
@@ -173,21 +242,21 @@ public class GameSettingPage extends JFrame {
 		lblYellowTeam.setBounds(38, 6, 115, 16);
 		panel_1.add(lblYellowTeam);
 		
-		textField_2 = new JTextField();
-		textField_2.setText("Enter Name");
-		textField_2.setForeground(Color.BLACK);
-		textField_2.setColumns(10);
-		textField_2.setBorder(null);
-		textField_2.setBounds(23, 24, 130, 26);
-		panel_1.add(textField_2);
+		YellowPlayer1 = new JTextField();
+		YellowPlayer1.setText("Enter name");
+		YellowPlayer1.setForeground(Color.BLACK);
+		YellowPlayer1.setColumns(10);
+		YellowPlayer1.setBorder(null);
+		YellowPlayer1.setBounds(23, 24, 130, 26);
+		panel_1.add(YellowPlayer1);
 		
-		textField_3 = new JTextField();
-		textField_3.setText("Enter Name");
-		textField_3.setForeground(Color.BLACK);
-		textField_3.setColumns(10);
-		textField_3.setBorder(null);
-		textField_3.setBounds(23, 59, 130, 26);
-		panel_1.add(textField_3);
+		YellowPlayer2 = new JTextField();
+		YellowPlayer2.setText("Enter name");
+		YellowPlayer2.setForeground(Color.BLACK);
+		YellowPlayer2.setColumns(10);
+		YellowPlayer2.setBorder(null);
+		YellowPlayer2.setBounds(23, 59, 130, 26);
+		panel_1.add(YellowPlayer2);
 				
 	}
 }

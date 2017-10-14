@@ -12,17 +12,21 @@ import javax.swing.JTextField;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+
+import teams.Team;
 
 public class PlayingPage extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField words;
-
+	private ArrayList<Team> teamList;
+	
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -33,12 +37,18 @@ public class PlayingPage extends JFrame {
 				}
 			}
 		});
-	}
+	}*/
 
 	/**
 	 * Create the frame.
 	 */
-	public PlayingPage() {
+	public void addTeams(ArrayList<Team> teams) {
+		this.teamList = teams;
+	}
+	
+	public PlayingPage(ArrayList<Team> teamList) {
+
+		ArrayList<Team> teams = teamList;
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 400);
 		contentPane = new JPanel();
@@ -86,7 +96,9 @@ public class PlayingPage extends JFrame {
 		
 		JButton btnWrong = new JButton("Wrong");
 		btnWrong.addActionListener(new ActionListener() {
+
 			public void actionPerformed(ActionEvent e) {
+				System.out.println(teams);
 			}
 		});
 		btnWrong.setBounds(302, 301, 66, 60);
