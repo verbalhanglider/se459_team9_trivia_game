@@ -13,17 +13,66 @@ public class Team {
 	private int size;
 	private int maximumMembers;
 	
-	public Team() {
+	public Team(String teamName) {
 		/*
 		 * Constructor class instantiates the instance with a default name "A New Team", an empty members property,
 		 * a size of 0 and maxmiumMembers set to 2
 		 */
-		name = "A New Team";
+		name = teamName;
 		members = new ArrayList<Player>();
 		this.setSize(0);
 		this.setMaximumMembers(2);
 	}
 	
+	public String getCurrentClueGiver() {
+		for (int i=0; i < this.members.size(); i++) {
+			Player cur = this.members.get(i);
+			String curRole = cur.getCurrentRole();
+			if (curRole == "clue-giver") {
+				return cur.getName();
+			}
+		}
+		return "null";
+	}
+
+	public String getCurrentGuesser() {
+		for (int i=0; i < this.members.size(); i++) {
+			Player cur = this.members.get(i);
+			String curRole = cur.getCurrentRole();
+			if (curRole == "guesser") {
+				return cur.getName();
+			}
+		}
+		return "null";
+		
+	}
+	public String setNewRoles(String lastClueGiver, String lastGuesser) {
+		Player firstPlayer = this.members.get(0);
+		Player secondPlayer = this.members.get(1);
+		if (lastClueGiver == "null" && lastGuesser == "null") {
+			firstPlayer.setCurrentRole("clue-giver");;
+			secondPlayer.setCurrentRole("guesser");;
+		}
+		else {
+			firstPlayer.setCurrentRole("clue-giver");;
+			secondPlayer.setCurrentRole("guesser");
+			
+		}
+		String output_pt1 = firstPlayer.getName() + " will be " + firstPlayer.getCurrentRole();
+		String output_pt2 = secondPlayer.getName() + " will be " + secondPlayer.getCurrentRole();
+		return output_pt1 + " and " + output_pt2;
+	}
+	
+	public void setPlayerRole(String playerName) {
+		Player cur;
+		for (int i=0; i < this.members.size(); i++) {
+			cur = this.members.get(i);
+			if (cur.getName() == playerName) {
+				String theRole = cur.getCurrentRole();
+				cur.setCurrentRole(theRole);
+			}
+		}
+	}
 	private void setMaximumMembers(int max) {
 		/* 
 		 * a private method to set the maximumMembers property

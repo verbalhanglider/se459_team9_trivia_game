@@ -10,8 +10,8 @@ public class TeamTest {
 
 	@Test
 	public void testTeam() {
-		Team teamOne = new Team();
-		Team teamTwo = new Team();
+		Team teamOne = new Team("Blue");
+		Team teamTwo = new Team("Green");
 		assertEquals(teamOne, teamTwo);
 		assertNotEquals(teamOne, null);
 		assertNotEquals(teamTwo, null);
@@ -20,7 +20,7 @@ public class TeamTest {
 
 	@Test
 	public void testSetName() {
-		Team teamOne = new Team();
+		Team teamOne = new Team("Blue");
 		teamOne.setName("Zippity Zebras");
 		assertEquals(teamOne.getName(), "Zippity Zebras");
 		
@@ -29,14 +29,14 @@ public class TeamTest {
 
 	@Test
 	public void testGetName() {
-		Team newTeam = new Team();
+		Team newTeam = new Team("A New Team");
 		assertEquals(newTeam.getName(), "A New Team");
 	}
 
 	@Test
 	public void testGetMembers() {
 		ArrayList<String> emptyList = new ArrayList<String>();
-		Team newTeam = new Team();
+		Team newTeam = new Team("Green");
 		
 		assertEquals(newTeam.getMembers(), emptyList);
 		
@@ -44,7 +44,7 @@ public class TeamTest {
 
 	@Test
 	public void testAddMember() {
-		Team newTeam = new Team();
+		Team newTeam = new Team("Blue");
 		ArrayList<String> data = new ArrayList<String>();
 		assertEquals(newTeam.getMembers(), data);
 		

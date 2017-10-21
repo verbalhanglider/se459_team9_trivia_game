@@ -2,7 +2,6 @@
 
 package ui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -12,9 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
+
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -29,10 +26,12 @@ import teams.Team;
 import java.awt.Color;
 import javax.swing.JTextField;
 
-import teams.*;
-
 public class GameSettingPage extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	static GameSettingPage frame;
 	private JTextField PurplePlayer1;
@@ -43,7 +42,7 @@ public class GameSettingPage extends JFrame {
 	private JTextField BluePlayer2;
 	private JTextField YellowPlayer1;
 	private JTextField YellowPlayer2;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -94,7 +93,7 @@ public class GameSettingPage extends JFrame {
 				if (player1.contains("Enter name") || player2.contains("Enter anme")) {
 					
 				} else {
-					Team newTeam = new Team("Green Team");
+					Team newTeam = new Team("Green");
 					newTeam.addMember(player1);
 					newTeam.addMember(player2);
 					allTeams.add(newTeam);
@@ -106,7 +105,7 @@ public class GameSettingPage extends JFrame {
 					System.out.println("hello");
 					
 				} else {
-					Team newTeam = new Team("Blue Team");
+					Team newTeam = new Team("Blue");
 					newTeam.addMember(player3);
 					newTeam.addMember(player4);
 					allTeams.add(newTeam);
@@ -115,7 +114,7 @@ public class GameSettingPage extends JFrame {
 				if (player5.contains("Enter name") || player6.contains("Enter name")) {
 					
 				} else {
-					Team newTeam = new Team("Purple Team");
+					Team newTeam = new Team("Purple");
 					newTeam.addMember(player5);
 					newTeam.addMember(player6);
 					allTeams.add(newTeam);
@@ -124,7 +123,7 @@ public class GameSettingPage extends JFrame {
 				if (player7.contains("Enter name") || player8.contains("Enter name")) {
 					
 				} else {
-					Team newTeam = new Team("Yellow Team");
+					Team newTeam = new Team("Yellow");
 					newTeam.addMember(player7);
 					newTeam.addMember(player8);
 					allTeams.add(newTeam);
@@ -133,7 +132,6 @@ public class GameSettingPage extends JFrame {
 				if (allTeams.size() == 2 || allTeams.size() == 4) {
 					PlayingPage playingPage = new PlayingPage(allTeams);
 					playingPage.setVisible(true);
-					frame.setVisible(false);
 				} else {
 					JOptionPane optionPane = new JOptionPane("There must be at least 2 teams with both players defined",JOptionPane.WARNING_MESSAGE);
 					JDialog dialog = optionPane.createDialog("Warning!");

@@ -81,7 +81,6 @@ import java.util.ArrayList;
  			}
  			
  		} else if (this.lastRole == "not defined") {
- 			System.out.println("testing setting lastRole for first time");
  			ArrayList<String> check = new ArrayList<String>();
  			for (int i=0; i < this.optionalRoles.size(); i++) {
  				if (!(this.optionalRoles.get(i) == this.getCurrentRole())) {
