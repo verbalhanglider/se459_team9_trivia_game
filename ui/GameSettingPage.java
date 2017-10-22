@@ -2,7 +2,6 @@
 
 package ui;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -12,14 +11,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.Rectangle;
-
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
@@ -28,8 +25,9 @@ import teams.Team;
 
 import java.awt.Color;
 import javax.swing.JTextField;
-
-import teams.*;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseAdapter;
 
 public class GameSettingPage extends JFrame {
 
@@ -132,12 +130,14 @@ public class GameSettingPage extends JFrame {
 				
 				if (allTeams.size() == 2 || allTeams.size() == 4) {
 					PlayingPage playingPage = new PlayingPage(allTeams);
+					frame.dispose();
 					playingPage.setVisible(true);
-					frame.setVisible(false);
+					
 				} else {
 					JOptionPane optionPane = new JOptionPane("There must be at least 2 teams with both players defined",JOptionPane.WARNING_MESSAGE);
 					JDialog dialog = optionPane.createDialog("Warning!");
 					dialog.setAlwaysOnTop(true); // to show top of all other application
+					dialog.setLocation(frame.getX() + frame.getWidth()/2 - dialog.getWidth()/2, frame.getY() + frame.getHeight()/2 - dialog.getHeight()/2);
 					dialog.setVisible(true); // to visible the dialog	
 				}			
 			}
@@ -159,22 +159,37 @@ public class GameSettingPage extends JFrame {
 		lblPurpleTeam.setBounds(38, 6, 115, 16);
 		panelPurple.add(lblPurpleTeam);
 		
-		PurplePlayer1 = new JTextField();
+		PurplePlayer1 = new JTextField();		
 		PurplePlayer1.setText("Enter name");
 		PurplePlayer1.setForeground(Color.BLACK);		
 		PurplePlayer1.setColumns(10);
 		PurplePlayer1.setBorder(null);
 		PurplePlayer1.setBounds(23, 24, 130, 26);
 		panelPurple.add(PurplePlayer1);
+		
+		PurplePlayer1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PurplePlayer1.setText("");
+			}
+		});
 				
+					
 		PurplePlayer2 = new JTextField();
 		PurplePlayer2.setText("Enter name");
 		PurplePlayer2.setForeground(Color.BLACK);
 		PurplePlayer2.setColumns(10);
 		PurplePlayer2.setBorder(null);
-		PurplePlayer2.setBounds(23, 59, 130, 26);
+		PurplePlayer2.setBounds(23, 59, 130, 26);		
 		panelPurple.add(PurplePlayer2);
-
+		
+		PurplePlayer2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				PurplePlayer2.setText("");
+			}
+		});
+				
 		
 		JPanel panelGreen = new JPanel();
 		panelGreen.setLayout(null);
@@ -195,6 +210,14 @@ public class GameSettingPage extends JFrame {
 		GreenPlayer1.setBounds(23, 24, 130, 26);
 		panelGreen.add(GreenPlayer1);
 		
+		GreenPlayer1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				GreenPlayer1.setText("");
+			}
+		});
+				
+		
 		GreenPlayer2 = new JTextField();
 		GreenPlayer2.setText("Enter name");
 		GreenPlayer2.setForeground(Color.BLACK);
@@ -203,16 +226,24 @@ public class GameSettingPage extends JFrame {
 		GreenPlayer2.setBounds(23, 59, 130, 26);
 		panelGreen.add(GreenPlayer2);
 		
-		JPanel panel = new JPanel();
-		panel.setLayout(null);
-		panel.setBorder(new LineBorder(new Color(102, 0, 102), 2, true));
-		panel.setBounds(19, 177, 195, 91);
-		contentPane.add(panel);
+		GreenPlayer2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				GreenPlayer2.setText("");
+			}
+		});
+				
+		
+		JPanel panelBlue = new JPanel();
+		panelBlue.setLayout(null);
+		panelBlue.setBorder(new LineBorder(new Color(102, 0, 102), 2, true));
+		panelBlue.setBounds(19, 177, 195, 91);
+		contentPane.add(panelBlue);
 		
 		JLabel lblBlueTeam = new JLabel("BLUE TEAM");
 		lblBlueTeam.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBlueTeam.setBounds(38, 6, 115, 16);
-		panel.add(lblBlueTeam);
+		panelBlue.add(lblBlueTeam);
 		
 		
 		BluePlayer1 = new JTextField();
@@ -221,7 +252,15 @@ public class GameSettingPage extends JFrame {
 		BluePlayer1.setColumns(10);
 		BluePlayer1.setBorder(null);
 		BluePlayer1.setBounds(23, 24, 130, 26);
-		panel.add(BluePlayer1);
+		panelBlue.add(BluePlayer1);
+		
+		BluePlayer1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				BluePlayer1.setText("");
+			}
+		});
+				
 		
 		BluePlayer2 = new JTextField();
 		BluePlayer2.setText("Enter name");
@@ -229,18 +268,27 @@ public class GameSettingPage extends JFrame {
 		BluePlayer2.setColumns(10);
 		BluePlayer2.setBorder(null);
 		BluePlayer2.setBounds(23, 59, 130, 26);
-		panel.add(BluePlayer2);
+		panelBlue.add(BluePlayer2);
 		
-		JPanel panel_1 = new JPanel();
-		panel_1.setLayout(null);
-		panel_1.setBorder(new LineBorder(new Color(102, 0, 102), 2, true));
-		panel_1.setBounds(236, 177, 195, 91);
-		contentPane.add(panel_1);
+		BluePlayer2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				BluePlayer2.setText("");
+			}
+		});
+				
+		
+		
+		JPanel panelYellow = new JPanel();
+		panelYellow.setLayout(null);
+		panelYellow.setBorder(new LineBorder(new Color(102, 0, 102), 2, true));
+		panelYellow.setBounds(236, 177, 195, 91);
+		contentPane.add(panelYellow);
 		
 		JLabel lblYellowTeam = new JLabel("YELLOW TEAM");
 		lblYellowTeam.setHorizontalAlignment(SwingConstants.CENTER);
 		lblYellowTeam.setBounds(38, 6, 115, 16);
-		panel_1.add(lblYellowTeam);
+		panelYellow.add(lblYellowTeam);
 		
 		YellowPlayer1 = new JTextField();
 		YellowPlayer1.setText("Enter name");
@@ -248,7 +296,16 @@ public class GameSettingPage extends JFrame {
 		YellowPlayer1.setColumns(10);
 		YellowPlayer1.setBorder(null);
 		YellowPlayer1.setBounds(23, 24, 130, 26);
-		panel_1.add(YellowPlayer1);
+		panelYellow.add(YellowPlayer1);
+		
+		YellowPlayer1.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				YellowPlayer1.setText("");
+			}
+		});
+				
+		
 		
 		YellowPlayer2 = new JTextField();
 		YellowPlayer2.setText("Enter name");
@@ -256,7 +313,16 @@ public class GameSettingPage extends JFrame {
 		YellowPlayer2.setColumns(10);
 		YellowPlayer2.setBorder(null);
 		YellowPlayer2.setBounds(23, 59, 130, 26);
-		panel_1.add(YellowPlayer2);
+		panelYellow.add(YellowPlayer2);
+		
+		YellowPlayer2.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				YellowPlayer2.setText("");
+			}
+		});
+				
+		
 				
 	}
 }
