@@ -30,20 +30,4 @@ public class Card {
 		return description;
 	}
 	
-	public void setTeam(String team) { // stores which team had this card
-		this.team = team;
-	} 
-	
-	public String getTeam() { 
-		return team;
-	}
-	
-	public void setAnswerPoint(int answer) {  // points store here, 1 for correct, 0 for wrong.
-		this.answer = answer;
-	}
-	
-	public int getAnswerPoint() {
-		return answer;
-	}
-	
 }

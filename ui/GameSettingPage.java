@@ -56,12 +56,15 @@ public class GameSettingPage extends JFrame {
 				}
 			}
 		});
+		
 	}
 
 	/**
 	 * Create the frame.
 	 */
 	public GameSettingPage() {
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 400);
 		contentPane = new JPanel();
@@ -78,7 +81,7 @@ public class GameSettingPage extends JFrame {
 		JButton btnStartGame = new JButton("START GAME");
 		btnStartGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String player1 = PurplePlayer1.getText();
+				String player1 = PurplePlayer1.getText();				
 				String player2 = PurplePlayer2.getText();
 				String player3 = GreenPlayer1.getText();
 				String player4 = GreenPlayer2.getText();
@@ -86,7 +89,8 @@ public class GameSettingPage extends JFrame {
 				String player6 = BluePlayer2.getText();
 				String player7 = YellowPlayer1.getText();
 				String player8 = YellowPlayer2.getText();
-
+				
+				
 				ArrayList<Team> allTeams = new ArrayList<Team>();
 				
 				if (player1.contains("Enter name") || player2.contains("Enter anme")) {

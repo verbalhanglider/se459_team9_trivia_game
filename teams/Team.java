@@ -12,6 +12,7 @@ public class Team {
 	private ArrayList<Player> members;
 	private int size;
 	private int maximumMembers;
+	private int point;
 	
 	public Team(String teamName) {
 		/*
@@ -102,4 +103,13 @@ public class Team {
 		return false;
 		
 	}
+	
+	public void setTeamPoint(int _point) {
+		point = _point;
+	}
+	
+	public int getTeamPoint() {
+		return point;
+	}
+		
 }

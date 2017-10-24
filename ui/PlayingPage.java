@@ -14,9 +14,11 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Random;
 import java.awt.event.ActionEvent;
 
 import teams.Team;
@@ -28,12 +30,10 @@ public class PlayingPage extends JFrame {
 
 	private JPanel contentPane;
 	private ArrayList<Team> teamList;
-	private JTextField words;
-	
-	
+	private JTextField words;	
 	Card card = new Card();
 	CardPile cardPile = new CardPile();
-	
+	ArrayList<Team> temp;
 	
 	/**
 	 * Launch the application.
@@ -57,13 +57,30 @@ public class PlayingPage extends JFrame {
 	public void addTeams(ArrayList<Team> teams) {
 		this.teamList = teams;
 	}
+
+	public static <V> boolean isEmpty(ArrayList<V> sourceList) {  
+        return (sourceList == null || sourceList.size() == 0);  
+    }  
 	
 	public PlayingPage(ArrayList<Team> teamList) {
 		
 		cardPile.cardLoad();
 		card = cardPile.DrawCard();
-
+				
 		ArrayList<Team> teams = teamList;
+		ArrayList<Team> randomList = null;
+		if(!isEmpty(teams)) {
+			do {
+				int randomIndex = Math.abs(new Random().nextInt(teams.size()));
+				randomList.add(teams.remove(randomIndex));
+			}while(teams.size() > 0);
+		}
+		
+		for(int i = 0; i< randomList.size(); i++) {
+			teams.add(randomList.remove(i));
+		}
+	    
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 400);
 		contentPane = new JPanel();
@@ -80,9 +97,8 @@ public class PlayingPage extends JFrame {
 		
 		JButton btnSkip = new JButton("SKIP");
 		btnSkip.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				card.setAnswerPoint(0);
-				//card.setTeam();
+			public void actionPerformed(ActionEvent e) {				
+				
 				cardPile.cardPileForCount.add(card);
 				card = cardPile.DrawCard();	
 				words.setText(card.getCardName());
@@ -121,8 +137,8 @@ public class PlayingPage extends JFrame {
 		JButton btnCorrect = new JButton("Correct");
 		btnCorrect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				card.setAnswerPoint(1);
-				//card.setTeam();
+				
+				
 				cardPile.cardPileForCount.add(card);
 				card = cardPile.DrawCard();	
 				words.setText(card.getCardName());
@@ -136,12 +152,12 @@ public class PlayingPage extends JFrame {
 		btnWrong.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				card.setAnswerPoint(0);
-				//card.setTeam();
+				
 				cardPile.cardPileForCount.add(card);
 				card = cardPile.DrawCard();
 				words.setText(card.getCardName());
 				description.setText(card.getCardDescription());
+				System.out.println(teams);
 			}
 		});
 		btnWrong.setBounds(302, 301, 66, 60);

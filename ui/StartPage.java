@@ -29,7 +29,7 @@ public class StartPage {
 					e.printStackTrace();
 				}
 			}
-		});
+		});		
 	}
 
 	/**
