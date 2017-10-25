@@ -1,8 +1,5 @@
 package ui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -28,12 +25,26 @@ import java.awt.Color;
 
 public class PlayingPage extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private ArrayList<Team> teamList;
+<<<<<<< HEAD
 	private JTextField words;	
 	Card card = new Card();
 	CardPile cardPile = new CardPile();
 	ArrayList<Team> temp;
+=======
+	private JTextField CountDownClock;
+	
+	// created property of class Team to hold currentTeamGuessing. 
+	// this will change every time a new turn starts by 
+	// clicking on "Start Turn"
+	private Team currentTeamGuessing;
+
+>>>>>>> c704d2d5b355114ec464f75afa5bd30367a794a1
 	
 	/**
 	 * Launch the application.
@@ -54,6 +65,7 @@ public class PlayingPage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+<<<<<<< HEAD
 	public void addTeams(ArrayList<Team> teams) {
 		this.teamList = teams;
 	}
@@ -80,6 +92,13 @@ public class PlayingPage extends JFrame {
 			teams.add(randomList.remove(i));
 		}
 */	    
+=======
+	
+	public PlayingPage(ArrayList<Team> teams) {
+
+		teamList = teams;
+		int lastDim1 = 0;
+>>>>>>> c704d2d5b355114ec464f75afa5bd30367a794a1
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 400);
@@ -87,6 +106,31 @@ public class PlayingPage extends JFrame {
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		currentTeamGuessing = teams.get(0);
+		for (int i=0; i < teamList.size(); i++) {
+			Team aTeam = teamList.get(i);
+			String name = aTeam.getName();
+			JLabel newLabel = new JLabel(name);
+			int dim1;
+			if (lastDim1 == 0) {
+				dim1 = 192;
+				lastDim1 = 192;
+			} else {
+				dim1 = lastDim1 + 45;
+				lastDim1 = dim1;
+			}
+			System.out.println(dim1);
+			lastDim1 = dim1;
+			newLabel.setHorizontalAlignment(SwingConstants.CENTER);
+			newLabel.setBounds(dim1, 6, 51, 38);
+			contentPane.add(newLabel);
+			
+			JTextField newScoreBox = new JTextField();
+			newScoreBox.setColumns(10);
+			newScoreBox.setBounds(dim1, 42, 40, 20);
+			contentPane.add(newScoreBox);
+		}
+
 		
 		
 		JTextArea description = new JTextArea();
@@ -110,6 +154,7 @@ public class PlayingPage extends JFrame {
 		contentPane.add(btnSkip);
 		
 		
+<<<<<<< HEAD
 		JLabel lblPurple = new JLabel("Purple");
 		lblPurple.setForeground(new Color(128, 0, 128));
 		lblPurple.setHorizontalAlignment(SwingConstants.CENTER);
@@ -134,6 +179,8 @@ public class PlayingPage extends JFrame {
 		lblYellow.setBounds(345, 6, 51, 38);
 		contentPane.add(lblYellow);
 		
+=======
+>>>>>>> c704d2d5b355114ec464f75afa5bd30367a794a1
 		JButton btnCorrect = new JButton("Correct");
 		btnCorrect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -152,17 +199,22 @@ public class PlayingPage extends JFrame {
 		btnWrong.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
 				
 				cardPile.cardPileForCount.add(card);
 				card = cardPile.DrawCard();
 				words.setText(card.getCardName());
 				description.setText(card.getCardDescription());
 				System.out.println(teams);
+=======
+				System.out.println(teamList);
+>>>>>>> c704d2d5b355114ec464f75afa5bd30367a794a1
 			}
 		});
 		btnWrong.setBounds(302, 301, 66, 60);
 		contentPane.add(btnWrong);
 		
+<<<<<<< HEAD
 		words = new JTextField();
 		words.setBackground(Color.LIGHT_GRAY);
 		words.setHorizontalAlignment(SwingConstants.CENTER);
@@ -177,5 +229,56 @@ public class PlayingPage extends JFrame {
 	
 		
 		
+=======
+		JButton btnStartTurn = new JButton("Start Turn");
+		btnStartTurn.setBounds(69, 11, 89, 23);
+		contentPane.add(btnStartTurn);
+		
+		CountDownClock = new JTextField();
+		CountDownClock.setBounds(10, 12, 55, 20);
+		contentPane.add(CountDownClock);
+		CountDownClock.setColumns(10);
+		
+		btnStartTurn.addActionListener(new ActionListener() {
+			
+			/*
+			 * Every time a new turn should start the player should click on Start Turn button;
+			 * this will check for the currentTeamGuessing property and find the next team in the list of teams playing 
+			 * to find the next team
+			 * 
+			 * Next team gets role assigned for each player in the team and a string gets printed to the console 
+			 * which player in that team is guesser and which player in that team is clue giver now.
+			 * 
+			 */
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String curTeamName = currentTeamGuessing.getName();
+				int curTeamPos = 0;
+				for (int i=0; i < teamList.size(); i++) {
+					Team cur = teamList.get(i);
+					if (cur.getName() == curTeamName) {
+						curTeamPos = i;
+						break;
+					}
+				}
+				int nextTeamUp = curTeamPos + 1;
+				Team nextTeam;
+				try {
+					nextTeam = teamList.get(nextTeamUp);
+				} catch (IndexOutOfBoundsException e1) {
+					nextTeam = teamList.get(0);
+				}
+				currentTeamGuessing = nextTeam;
+				String lastClueGiver = currentTeamGuessing.getCurrentClueGiver();
+				String lastGuesser = currentTeamGuessing.getCurrentGuesser();
+
+				String message = currentTeamGuessing.setNewRoles(lastClueGiver, lastGuesser);
+				System.out.println(message);
+
+			}
+			
+		});
+>>>>>>> c704d2d5b355114ec464f75afa5bd30367a794a1
 	}
 }
