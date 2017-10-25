@@ -68,7 +68,7 @@ public class PlayingPage extends JFrame {
 		card = cardPile.DrawCard();
 				
 		ArrayList<Team> teams = teamList;
-		ArrayList<Team> randomList = null;
+/*		ArrayList<Team> randomList = null;
 		if(!isEmpty(teams)) {
 			do {
 				int randomIndex = Math.abs(new Random().nextInt(teams.size()));
@@ -79,7 +79,7 @@ public class PlayingPage extends JFrame {
 		for(int i = 0; i< randomList.size(); i++) {
 			teams.add(randomList.remove(i));
 		}
-	    
+*/	    
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 400);
