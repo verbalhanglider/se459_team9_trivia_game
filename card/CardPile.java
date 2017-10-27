@@ -26,7 +26,7 @@ public class CardPile {
 		cardPileForPlay.add(card2);
 		card3.setCardName("Backlog");
 		card3.setCardDescription("Backlog is ....");
-		cardPileForPlay.add(card2);
+		cardPileForPlay.add(card3);
 	
 	}
 	
@@ -43,7 +43,7 @@ public class CardPile {
 		int s = r.nextInt(max)%(max-min+1) + min;		
 		card = cardPileForPlay.get(s);
 		
-		cardPileForPlay.remove(s);
+		cardPileForCount.add(cardPileForPlay.remove(s));
 		return card;
 	}
 	
