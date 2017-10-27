@@ -1,5 +1,3 @@
-
-
 package ui;
 
 import java.awt.EventQueue;
@@ -81,12 +79,12 @@ public class GameSettingPage extends JFrame {
 		JButton btnStartGame = new JButton("START GAME");
 		btnStartGame.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String player1 = PurplePlayer1.getText();				
-				String player2 = PurplePlayer2.getText();
-				String player3 = GreenPlayer1.getText();
-				String player4 = GreenPlayer2.getText();
-				String player5 = BluePlayer1.getText();
-				String player6 = BluePlayer2.getText();
+				String player5 = PurplePlayer1.getText();				
+				String player6 = PurplePlayer2.getText();
+				String player1 = GreenPlayer1.getText();
+				String player2 = GreenPlayer2.getText();
+				String player3 = BluePlayer1.getText();
+				String player4 = BluePlayer2.getText();
 				String player7 = YellowPlayer1.getText();
 				String player8 = YellowPlayer2.getText();
 				
@@ -159,6 +157,7 @@ public class GameSettingPage extends JFrame {
 		panelPurple.setLayout(null);
 		
 		JLabel lblPurpleTeam = new JLabel("PURPLE TEAM");
+		lblPurpleTeam.setForeground(new Color(128, 0, 128));
 		lblPurpleTeam.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPurpleTeam.setBounds(38, 6, 115, 16);
 		panelPurple.add(lblPurpleTeam);
@@ -197,11 +196,12 @@ public class GameSettingPage extends JFrame {
 		
 		JPanel panelGreen = new JPanel();
 		panelGreen.setLayout(null);
-		panelGreen.setBorder(new LineBorder(new Color(102, 0, 102), 2, true));
+		panelGreen.setBorder(new LineBorder(new Color(0, 128, 0), 2, true));
 		panelGreen.setBounds(236, 63, 195, 91);
 		contentPane.add(panelGreen);
 		
 		JLabel lblGreenTeam = new JLabel("GREEN TEAM");
+		lblGreenTeam.setForeground(new Color(0, 128, 0));
 		lblGreenTeam.setHorizontalAlignment(SwingConstants.CENTER);
 		lblGreenTeam.setBounds(38, 6, 115, 16);
 		panelGreen.add(lblGreenTeam);
@@ -239,12 +239,14 @@ public class GameSettingPage extends JFrame {
 				
 		
 		JPanel panelBlue = new JPanel();
+		panelBlue.setForeground(new Color(0, 0, 255));
 		panelBlue.setLayout(null);
-		panelBlue.setBorder(new LineBorder(new Color(102, 0, 102), 2, true));
+		panelBlue.setBorder(new LineBorder(new Color(0, 0, 255), 2, true));
 		panelBlue.setBounds(19, 177, 195, 91);
 		contentPane.add(panelBlue);
 		
 		JLabel lblBlueTeam = new JLabel("BLUE TEAM");
+		lblBlueTeam.setForeground(new Color(0, 0, 255));
 		lblBlueTeam.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBlueTeam.setBounds(38, 6, 115, 16);
 		panelBlue.add(lblBlueTeam);
@@ -285,11 +287,12 @@ public class GameSettingPage extends JFrame {
 		
 		JPanel panelYellow = new JPanel();
 		panelYellow.setLayout(null);
-		panelYellow.setBorder(new LineBorder(new Color(102, 0, 102), 2, true));
+		panelYellow.setBorder(new LineBorder(new Color(210, 105, 30), 2, true));
 		panelYellow.setBounds(236, 177, 195, 91);
 		contentPane.add(panelYellow);
 		
 		JLabel lblYellowTeam = new JLabel("YELLOW TEAM");
+		lblYellowTeam.setForeground(new Color(210, 105, 30));
 		lblYellowTeam.setHorizontalAlignment(SwingConstants.CENTER);
 		lblYellowTeam.setBounds(38, 6, 115, 16);
 		panelYellow.add(lblYellowTeam);

@@ -3,7 +3,6 @@ package ui;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JButton;
@@ -29,7 +28,7 @@ public class StartPage {
 					e.printStackTrace();
 				}
 			}
-		});		
+		});
 	}
 
 	/**
@@ -61,10 +60,9 @@ public class StartPage {
 		JButton btnPlay = new JButton("PLAY");
 		btnPlay.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				frame.dispose();
 				GameSettingPage gameSetting = new GameSettingPage();
 				gameSetting.setVisible(true);
-				
+				frame.setVisible(false);
 			}
 		});
 		btnPlay.setBounds(77, 189, 270, 29);

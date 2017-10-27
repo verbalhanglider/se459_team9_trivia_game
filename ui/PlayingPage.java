@@ -1,5 +1,8 @@
 package ui;
 
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -8,10 +11,11 @@ import card.Card;
 import card.CardPile;
 
 import javax.swing.JButton;
+
+import java.awt.Color;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -19,9 +23,6 @@ import java.util.Random;
 import java.awt.event.ActionEvent;
 
 import teams.Team;
-import javax.swing.JTextArea;
-import java.awt.Component;
-import java.awt.Color;
 
 public class PlayingPage extends JFrame {
 
@@ -30,21 +31,16 @@ public class PlayingPage extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
+	private JTextField WordDescription;
 	private ArrayList<Team> teamList;
-<<<<<<< HEAD
-	private JTextField words;	
+	private JTextField CountDownClock;
 	Card card = new Card();
 	CardPile cardPile = new CardPile();
-	ArrayList<Team> temp;
-=======
-	private JTextField CountDownClock;
-	
 	// created property of class Team to hold currentTeamGuessing. 
 	// this will change every time a new turn starts by 
 	// clicking on "Start Turn"
 	private Team currentTeamGuessing;
 
->>>>>>> c704d2d5b355114ec464f75afa5bd30367a794a1
 	
 	/**
 	 * Launch the application.
@@ -65,22 +61,31 @@ public class PlayingPage extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-<<<<<<< HEAD
 	public void addTeams(ArrayList<Team> teams) {
 		this.teamList = teams;
 	}
-
+	
 	public static <V> boolean isEmpty(ArrayList<V> sourceList) {  
         return (sourceList == null || sourceList.size() == 0);  
     }  
 	
-	public PlayingPage(ArrayList<Team> teamList) {
+	
+	
+	public PlayingPage(ArrayList<Team> teams) {
+
+		
+		ArrayList<ScoreInfo> scoreInfoList = new ArrayList<ScoreInfo>();
+		JLabel Word = new JLabel("Card");
+		JTextField WordDescription = new JTextField(" ");
+		teamList = teams;
+		int lastDim1 = 0;
 		
 		cardPile.cardLoad();
 		card = cardPile.DrawCard();
 				
-		ArrayList<Team> teams = teamList;
-/*		ArrayList<Team> randomList = null;
+		
+		ArrayList<Team> randomList = new ArrayList<Team>();
+		
 		if(!isEmpty(teams)) {
 			do {
 				int randomIndex = Math.abs(new Random().nextInt(teams.size()));
@@ -89,23 +94,16 @@ public class PlayingPage extends JFrame {
 		}
 		
 		for(int i = 0; i< randomList.size(); i++) {
-			teams.add(randomList.remove(i));
+			teams.add(randomList.get(i));
 		}
-*/	    
-=======
-	
-	public PlayingPage(ArrayList<Team> teams) {
-
-		teamList = teams;
-		int lastDim1 = 0;
->>>>>>> c704d2d5b355114ec464f75afa5bd30367a794a1
-		
+	    
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 400);
+		setBounds(100, 100, 450, 459);
 		contentPane = new JPanel();
-		contentPane.setBorder(null);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
 		currentTeamGuessing = teams.get(0);
 		for (int i=0; i < teamList.size(); i++) {
 			Team aTeam = teamList.get(i);
@@ -129,107 +127,121 @@ public class PlayingPage extends JFrame {
 			newScoreBox.setColumns(10);
 			newScoreBox.setBounds(dim1, 42, 40, 20);
 			contentPane.add(newScoreBox);
+			
+			newScoreBox.setText("0");
+			ScoreInfo score = new ScoreInfo ();
+			score.setJTextField(newScoreBox);
+			score.setTeamName(teamList.get(i).getName());
+			score.setLabel(newLabel);
+			
+			String teamColor = teamList.get(i).getName();
+			switch(teamColor) {
+			case "Green Team" :
+				newLabel.setForeground(new Color(0, 255, 0));
+				if(currentTeamGuessing.getName() == teamColor) 
+				{
+					newLabel.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+				Word.setForeground(new Color(0, 255, 0));
+				WordDescription.setForeground(new Color(0, 255, 0));
+				}
+				break;
+				
+			case "Blue Team" :
+				newLabel.setForeground(new Color(0, 0, 255));
+				if(currentTeamGuessing.getName() == teamColor) 
+				{
+					newLabel.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+					Word.setForeground(new Color(0, 0, 255));
+					WordDescription.setForeground(new Color(0, 0, 255));
+				}
+				break;
+				
+			case "Purple Team" :
+				newLabel.setForeground(new Color(128, 0, 128));
+				if(currentTeamGuessing.getName() == teamColor)
+				{
+					newLabel.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+					Word.setForeground(new Color(128, 0, 128));
+					WordDescription.setForeground(new Color(128, 0, 128));
+				}
+				break;
+				
+			case "Yellow Team" :
+				newLabel.setForeground(new Color(210, 105, 30));
+				if(currentTeamGuessing.getName() == teamColor)
+				{
+					newLabel.setFont(new Font("Lucida Grande", Font.BOLD, 13));
+					Word.setForeground(new Color(210, 105, 30));
+					WordDescription.setForeground(new Color(210, 105, 30));
+				}
+				break;
+				
+			default :
+				break;
+			}
+			
+			scoreInfoList.add(score);
+			
 		}
-
 		
 		
-		JTextArea description = new JTextArea();
-		description.setBorder(null);
-		description.setBounds(69, 103, 299, 153);
-		description.setText(card.getCardDescription());
-		contentPane.add(description);
 		
 		JButton btnSkip = new JButton("SKIP");
+		btnSkip.setFont(new Font("Lucida Grande", Font.BOLD, 35));
 		btnSkip.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 				
-				cardPile.cardPileForCount.add(card);
 				card = cardPile.DrawCard();	
-				words.setText(card.getCardName());
-				description.setText(card.getCardDescription());
+				WordDescription.setText(card.getCardDescription());
+				Word.setText(card.getCardName());
 			}
 		});
-		btnSkip.setFont(new Font("Lucida Grande", Font.BOLD, 35));
-		btnSkip.setBounds(147, 301, 146, 60);
+		btnSkip.setBounds(147, 350, 146, 60);
 		contentPane.add(btnSkip);
 		
 		
-<<<<<<< HEAD
-		JLabel lblPurple = new JLabel("Purple");
-		lblPurple.setForeground(new Color(128, 0, 128));
-		lblPurple.setHorizontalAlignment(SwingConstants.CENTER);
-		lblPurple.setBounds(192, 6, 51, 38);
-		contentPane.add(lblPurple);
+		WordDescription.setBounds(69, 124, 299, 205);
+		contentPane.add(WordDescription);
+		WordDescription.setColumns(10);
 		
-		JLabel lblGreen = new JLabel("Green");
-		lblGreen.setForeground(new Color(0, 128, 0));
-		lblGreen.setHorizontalAlignment(SwingConstants.CENTER);
-		lblGreen.setBounds(242, 6, 51, 38);
-		contentPane.add(lblGreen);
+		WordDescription.setText(card.getCardDescription());
 		
-		JLabel lblBlue = new JLabel("Blue");
-		lblBlue.setForeground(new Color(0, 0, 255));
-		lblBlue.setHorizontalAlignment(SwingConstants.CENTER);
-		lblBlue.setBounds(294, 6, 51, 38);
-		contentPane.add(lblBlue);
-		
-		JLabel lblYellow = new JLabel("Yellow");
-		lblYellow.setForeground(new Color(255, 215, 0));
-		lblYellow.setHorizontalAlignment(SwingConstants.CENTER);
-		lblYellow.setBounds(345, 6, 51, 38);
-		contentPane.add(lblYellow);
-		
-=======
->>>>>>> c704d2d5b355114ec464f75afa5bd30367a794a1
 		JButton btnCorrect = new JButton("Correct");
 		btnCorrect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
-				cardPile.cardPileForCount.add(card);
+	
+				for(int i = 0; i < teamList.size(); i++) {
+					if(currentTeamGuessing.getName() == scoreInfoList.get(i).getTeamName())
+					{
+						teamList.get(i).setPoint(teamList.get(i).getPoint() + 1);
+						int pointPlusOne = teamList.get(i).getPoint();
+						String point = String.valueOf(pointPlusOne);
+						scoreInfoList.get(i).getJTextField().setText(point);
+						
+					}
+				}
+								
 				card = cardPile.DrawCard();	
-				words.setText(card.getCardName());
-				description.setText(card.getCardDescription());
+				WordDescription.setText(card.getCardDescription());
+				Word.setText(card.getCardName());				
 			}
 		});
-		btnCorrect.setBounds(69, 301, 66, 60);
+		btnCorrect.setBounds(69, 350, 66, 60);
 		contentPane.add(btnCorrect);
 		
 		JButton btnWrong = new JButton("Wrong");
 		btnWrong.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
 				
-				cardPile.cardPileForCount.add(card);
-				card = cardPile.DrawCard();
-				words.setText(card.getCardName());
-				description.setText(card.getCardDescription());
-				System.out.println(teams);
-=======
-				System.out.println(teamList);
->>>>>>> c704d2d5b355114ec464f75afa5bd30367a794a1
+				card = cardPile.DrawCard();	
+				WordDescription.setText(card.getCardDescription());
+				Word.setText(card.getCardName());
 			}
 		});
-		btnWrong.setBounds(302, 301, 66, 60);
+		btnWrong.setBounds(302, 350, 66, 60);
 		contentPane.add(btnWrong);
 		
-<<<<<<< HEAD
-		words = new JTextField();
-		words.setBackground(Color.LIGHT_GRAY);
-		words.setHorizontalAlignment(SwingConstants.CENTER);
-		words.setFont(new Font("Times New Roman", Font.BOLD, 24));
-		words.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		words.setBounds(69, 56, 299, 43);
-		contentPane.add(words);
-		words.setColumns(10);
-		words.setText(card.getCardName());
-		words.setBackground(contentPane.getBackground());
-		words.setBorder(null);
-	
-		
-		
-=======
 		JButton btnStartTurn = new JButton("Start Turn");
 		btnStartTurn.setBounds(69, 11, 89, 23);
 		contentPane.add(btnStartTurn);
@@ -238,6 +250,15 @@ public class PlayingPage extends JFrame {
 		CountDownClock.setBounds(10, 12, 55, 20);
 		contentPane.add(CountDownClock);
 		CountDownClock.setColumns(10);
+		
+		
+		Word.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
+		Word.setHorizontalAlignment(SwingConstants.CENTER);
+		Word.setBounds(160, 83, 108, 39);
+		contentPane.add(Word);
+		
+		Word.setText(card.getCardName());
+		
 		
 		btnStartTurn.addActionListener(new ActionListener() {
 			
@@ -279,6 +300,5 @@ public class PlayingPage extends JFrame {
 			}
 			
 		});
->>>>>>> c704d2d5b355114ec464f75afa5bd30367a794a1
 	}
 }
