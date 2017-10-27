@@ -10,7 +10,11 @@ public class TeamTest {
 
 	@Test
 	public void testTeam() {
+<<<<<<< HEAD:src/teams/TeamTest.java
+		Team teamOne = new Team("Blue");
+=======
 		Team teamOne = new Team("Green");
+>>>>>>> 64e9cb5edc114dc87554b9ab7f42579d97bda3e5:teams/TeamTest.java
 		Team teamTwo = new Team("Green");
 		assertEquals(teamOne, teamTwo);
 		assertNotEquals(teamOne, null);
@@ -36,7 +40,11 @@ public class TeamTest {
 	@Test
 	public void testGetMembers() {
 		ArrayList<String> emptyList = new ArrayList<String>();
+<<<<<<< HEAD:src/teams/TeamTest.java
+		Team newTeam = new Team("Green");
+=======
 		Team newTeam = new Team("Blue");
+>>>>>>> 64e9cb5edc114dc87554b9ab7f42579d97bda3e5:teams/TeamTest.java
 		
 		assertEquals(newTeam.getMembers(), emptyList);
 		
