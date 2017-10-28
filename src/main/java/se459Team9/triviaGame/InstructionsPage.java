@@ -1,4 +1,5 @@
-package ui;
+package se459Team9.triviaGame;
+
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -25,15 +26,15 @@ public class InstructionsPage extends JDialog {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		try {
-			InstructionsPage dialog = new InstructionsPage();
-			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
-			dialog.setVisible(true);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+//	public static void main(String[] args) {
+//		try {
+//			InstructionsPage dialog = new InstructionsPage();
+//			dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+//			dialog.setVisible(true);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//	}
 
 	/**
 	 * Create the dialog.

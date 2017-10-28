@@ -1,4 +1,5 @@
-package card;
+package se459Team9.triviaGame;
+
 
 
 public class Card {

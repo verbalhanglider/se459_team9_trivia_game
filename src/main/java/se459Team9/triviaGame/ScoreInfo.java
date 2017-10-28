@@ -1,4 +1,5 @@
-package ui;
+package se459Team9.triviaGame;
+
 
 import javax.swing.JLabel;
 import javax.swing.JTextField;

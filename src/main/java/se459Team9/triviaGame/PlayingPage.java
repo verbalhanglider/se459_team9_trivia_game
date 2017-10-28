@@ -1,28 +1,23 @@
-package ui;
+package se459Team9.triviaGame;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import card.Card;
-import card.CardPile;
-
-import javax.swing.JButton;
 
 import java.awt.Color;
 import java.awt.Font;
-import javax.swing.JTextField;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Random;
-import java.awt.event.ActionEvent;
 
-import teams.Team;
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 
 public class PlayingPage extends JFrame {
 
@@ -31,14 +26,14 @@ public class PlayingPage extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField WordDescription;
 	private ArrayList<Team> teamList;
 	private JTextField CountDownClock;
 	Card card = new Card();
 	CardPile cardPile = new CardPile();
-	// created property of class Team to hold currentTeamGuessing. 
-	// this will change every time a new turn starts by 
-	// clicking on "Start Turn"
+	/* created property of class Team to hold currentTeamGuessing. 
+	* this will change every time a new turn starts by 
+	* clicking on "Start Turn"
+	*/
 	private Team currentTeamGuessing;
 
 	
@@ -74,9 +69,12 @@ public class PlayingPage extends JFrame {
 	public PlayingPage(ArrayList<Team> teams) {
 
 		
-		ArrayList<ScoreInfo> scoreInfoList = new ArrayList<ScoreInfo>();
-		JLabel Word = new JLabel("Card");
-		JTextField WordDescription = new JTextField(" ");
+		final ArrayList<ScoreInfo> scoreInfoList = new ArrayList<ScoreInfo>();
+		final JLabel Word = new JLabel("Card");
+		final JTextArea WordDescription = new JTextArea(" ");
+		WordDescription.setLineWrap(true);
+		WordDescription.setColumns(5);
+		WordDescription.setRows(20);
 		teamList = teams;
 		int lastDim1 = 0;
 		
@@ -242,7 +240,7 @@ public class PlayingPage extends JFrame {
 		btnWrong.setBounds(302, 350, 66, 60);
 		contentPane.add(btnWrong);
 		
-		JButton btnStartTurn = new JButton("Start Turn");
+		JButton btnStartTurn = new JButton("Next");
 		btnStartTurn.setBounds(69, 11, 89, 23);
 		contentPane.add(btnStartTurn);
 		
@@ -295,7 +293,12 @@ public class PlayingPage extends JFrame {
 				String lastGuesser = currentTeamGuessing.getCurrentGuesser();
 
 				String message = currentTeamGuessing.setNewRoles(lastClueGiver, lastGuesser);
-				System.out.println(message);
+				JOptionPane optionPane = new JOptionPane(message,JOptionPane.WARNING_MESSAGE);
+				JDialog dialog = optionPane.createDialog("Alert!");
+				dialog.setAlwaysOnTop(true); // to show top of all other application
+				//dialog.setLocation(frame.getX() + frame.getWidth()/2 - dialog.getWidth()/2, frame.getY() + frame.getHeight()/2 - dialog.getHeight()/2);
+				dialog.setVisible(true); // to visible the dialog	
+
 
 			}
 			

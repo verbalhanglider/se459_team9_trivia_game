@@ -1,6 +1,5 @@
-package ui;
+package se459Team9.triviaGame;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,21 +13,20 @@ import javax.swing.JDialog;
 
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 
-import teams.Team;
-
 import java.awt.Color;
 import javax.swing.JTextField;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 
 public class GameSettingPage extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	static GameSettingPage frame;
 	private JTextField PurplePlayer1;
@@ -43,19 +41,19 @@ public class GameSettingPage extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					frame = new GameSettingPage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-		
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					frame = new GameSettingPage();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//		
+//	}
 
 	/**
 	 * Create the frame.
@@ -131,8 +129,8 @@ public class GameSettingPage extends JFrame {
 				}
 				
 				if (allTeams.size() == 2 || allTeams.size() == 4) {
+					System.out.println(allTeams);
 					PlayingPage playingPage = new PlayingPage(allTeams);
-					frame.dispose();
 					playingPage.setVisible(true);
 					
 				} else {

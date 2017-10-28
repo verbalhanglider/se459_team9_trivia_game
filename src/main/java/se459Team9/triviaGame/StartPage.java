@@ -1,6 +1,5 @@
-package ui;
+package se459Team9.triviaGame;
 
-import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.SwingConstants;
@@ -18,18 +17,18 @@ public class StartPage {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					StartPage window = new StartPage();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					StartPage window = new StartPage();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the application.
@@ -79,5 +78,10 @@ public class StartPage {
 		lblAnAgileGame.setHorizontalAlignment(SwingConstants.CENTER);
 		lblAnAgileGame.setBounds(166, 58, 100, 16);
 		frame.getContentPane().add(lblAnAgileGame);
+	}
+
+	public void show() {
+
+		frame.setVisible(true);
 	}
 }
