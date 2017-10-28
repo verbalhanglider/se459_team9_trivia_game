@@ -2,6 +2,9 @@ package teams;
 
 import java.util.ArrayList;
 
+import card.Card;
+import card.CardPile;
+
 public class Team {
 	/**
 	 * A team has a name, and a list of members. The members list can have a set maximum members number.
@@ -13,6 +16,7 @@ public class Team {
 	private int size;
 	private int maximumMembers;
 	private int point;
+	private CardPile drawnCardPile;
 	
 	public Team(String teamName) {
 		/*
@@ -25,6 +29,55 @@ public class Team {
 		this.setMaximumMembers(2);
 	}
 	
+	public String getCurrentClueGiver() {
+		for (int i=0; i < this.members.size(); i++) {
+			Player cur = this.members.get(i);
+			String curRole = cur.getCurrentRole();
+			if (curRole == "clue-giver") {
+				return cur.getName();
+			}
+		}
+		return "null";
+	}
+
+	public String getCurrentGuesser() {
+		for (int i=0; i < this.members.size(); i++) {
+			Player cur = this.members.get(i);
+			String curRole = cur.getCurrentRole();
+			if (curRole == "guesser") {
+				return cur.getName();
+			}
+		}
+		return "null";
+		
+	}
+	public String setNewRoles(String lastClueGiver, String lastGuesser) {
+		Player firstPlayer = this.members.get(0);
+		Player secondPlayer = this.members.get(1);
+		if (lastClueGiver == "null" && lastGuesser == "null") {
+			firstPlayer.setCurrentRole("clue-giver");;
+			secondPlayer.setCurrentRole("guesser");;
+		}
+		else {
+			firstPlayer.setCurrentRole("clue-giver");;
+			secondPlayer.setCurrentRole("guesser");
+			
+		}
+		String output_pt1 = firstPlayer.getName() + " will be " + firstPlayer.getCurrentRole();
+		String output_pt2 = secondPlayer.getName() + " will be " + secondPlayer.getCurrentRole();
+		return output_pt1 + " and " + output_pt2;
+	}
+	
+	public void setPlayerRole(String playerName) {
+		Player cur;
+		for (int i=0; i < this.members.size(); i++) {
+			cur = this.members.get(i);
+			if (cur.getName() == playerName) {
+				String theRole = cur.getCurrentRole();
+				cur.setCurrentRole(theRole);
+			}
+		}
+	}
 	private void setMaximumMembers(int max) {
 		/* 
 		 * a private method to set the maximumMembers property
@@ -104,12 +157,19 @@ public class Team {
 		
 	}
 	
-	public void setTeamPoint(int _point) {
+	public void setPoint(int _point){
 		point = _point;
 	}
 	
-	public int getTeamPoint() {
+	public int getPoint() {
 		return point;
 	}
-		
+	
+	public void setDrawnCard(Card _card) {
+		drawnCardPile.cardPileForCount.add(_card);
+	}
+	
+	public CardPile getDrawnCardPile() {
+		return drawnCardPile;
+	}
 }
