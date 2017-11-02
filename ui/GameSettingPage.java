@@ -39,7 +39,7 @@ public class GameSettingPage extends JFrame {
 	private JTextField BluePlayer2;
 	private JTextField YellowPlayer1;
 	private JTextField YellowPlayer2;
-
+	private int x,y;
 	/**
 	 * Launch the application.
 	 */
@@ -132,15 +132,21 @@ public class GameSettingPage extends JFrame {
 				
 				if (allTeams.size() == 2 || allTeams.size() == 4) {
 					PlayingPage playingPage = new PlayingPage(allTeams);
+					ProhibitedWordList prohibitedWordList = new ProhibitedWordList();
 					frame.dispose();
 					playingPage.setVisible(true);
+					x = playingPage.getX();
+					y = playingPage.getY();
+					x += playingPage.getWidth() + 10;
 					
+					prohibitedWordList.setBounds(x, y, prohibitedWordList.getWidth(), prohibitedWordList.getHeight());
+					prohibitedWordList.setVisible(true);				
 				} else {
 					JOptionPane optionPane = new JOptionPane("There must be at least 2 teams with both players defined",JOptionPane.WARNING_MESSAGE);
 					JDialog dialog = optionPane.createDialog("Warning!");
 					dialog.setAlwaysOnTop(true); // to show top of all other application
 					dialog.setLocation(frame.getX() + frame.getWidth()/2 - dialog.getWidth()/2, frame.getY() + frame.getHeight()/2 - dialog.getHeight()/2);
-					dialog.setVisible(true); // to visible the dialog	
+					dialog.setVisible(true); // to visible the dialog
 				}			
 			}
 		});
