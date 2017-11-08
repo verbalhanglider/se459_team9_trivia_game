@@ -47,7 +47,7 @@
                 	<archive>
                 		<manifest>
                     		<mainClass>
-                        	org.baeldung.executable.ExecutableMavenJar
+                        	se459Team9TriviaGame.Main
                     		</mainClass>
                 		</manifest>
                 	</archive>
