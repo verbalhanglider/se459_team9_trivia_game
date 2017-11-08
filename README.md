@@ -34,7 +34,6 @@ To use windowbuilder with eclipse, you need to take the following extra steps
 
 1. import this project into your eclipse
 1. go the pom.xml and add the following xml fragment to the dependencies section if you are on a Windows box
-
 ```text/xml
 <dependency>
   <groupId>org.eclipse.swt</groupId>
@@ -53,3 +52,7 @@ To use windowbuilder with eclipse, you need to take the following extra steps
 </dependency
 ```
 1. if you are not using a Mac or a Windows computer select the artifact appropriate for your computer from the [Maven repository](https://mvnrepository.com/artifact/org.eclipse.swt/org.eclipse.swt.cocoa.macosx.x86_64)
+1. once the dependency is added the pom.xml file make sure you save the pom.xml file
+1. go to the root folder of the project and right click on it in the preview pane
+1. select Maven->Update Project
+1. you should see the new artifact appear in your Maven Dependencies folder. Now you should be able to right click on any of the GUI classes and see the Open With->Window Builder. Once it opens up, you should see two tabs at the bottom of the editing screen one for Source and one for Design. The Design tab will let you preview the source code in a WYSIWIG edit screen.
