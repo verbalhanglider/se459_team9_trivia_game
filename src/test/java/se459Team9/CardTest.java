@@ -1,6 +1,7 @@
 package se459Team9;
 
 import org.junit.Rule;
+import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
@@ -15,29 +16,15 @@ public class CardTest {
 	
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 	
-	Card card = new Card();
-	public String name = "Test";
-	public String description = "This is a description";
-
+	@Test
 	public void testsetCardName() {
-		card.setCardName(name);
-		assertEquals("Test", name);
+		Card card = new Card("Test", "Test is...");
+		assertEquals(card.getCardName(), "Test");
 	}
 	
+	@Test
 	public void testsetCardDescription() {
-		card.setCardDescription(description);
-		assertEquals("This is a description", description);
+		Card card = new Card("Test", "Test is...");
+		assertEquals(card.getCardDescription(), "Test is...");
 	}
-	
-	
-	public void testgetCardName() {
-		card.setCardName(name);
-		assertEquals("Test", card.getCardName());
-	}
-	
-	public void testgetCardDescription() {
-		card.setCardDescription(description);
-		assertEquals("This is a description", card.getCardDescription());
-	}
-
 }

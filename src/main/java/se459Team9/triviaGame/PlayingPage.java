@@ -21,37 +21,18 @@ import javax.swing.border.EmptyBorder;
 
 public class PlayingPage extends JFrame {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private ArrayList<Team> teamList;
+	private CardPile cardPile;
+		
 	private JTextField CountDownClock;
-	Card card = new Card();
-	CardPile cardPile = new CardPile();
+	
 	/* created property of class Team to hold currentTeamGuessing. 
 	* this will change every time a new turn starts by 
 	* clicking on "Start Turn"
 	*/
 	private Team currentTeamGuessing;
-
-	
-	/**
-	 * Launch the application.
-	 */
-	/*public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PlayingPage frame = new PlayingPage();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}*/
 
 	/**
 	 * Create the frame.
@@ -78,9 +59,41 @@ public class PlayingPage extends JFrame {
 		teamList = teams;
 		int lastDim1 = 0;
 		
-		cardPile.cardLoad();
-		card = cardPile.DrawCard();
-				
+	
+		cardPile = new CardPile();
+		
+		Card card1 = new Card("Scrum",
+			      "Scrum is an agile framework characterized by self-organizing teams and high degree of democracy in determining scope and self-volunteering task assignment"
+				  );	
+		Card card2 = new Card("Sprint",
+							  "Sprint is a short period of development that has a goal of a shippable product at the end. A Sprint is usually 2-4 weeks.");
+		Card card3 = new Card("Product Backlog",
+				  			  "Product Backlog is the stories describing new features to your product that the product owner wants to have.");
+		Card card4 = new Card("Scrum master",
+				   			  "Scrum master is the team leader of the developers and is in charge of making sure that nobody on the team is over-worked, that goals are realistic for each sprint, and that everybody on the team is feeling heard and a part of the team.");
+		Card card5 = new Card("Product owner",
+				  			  "Product owner is the representative for the business that is sponsoring the development of the product and is in charge of ensuring that the team is working towards what is most valuable for the business.");
+		Card card6 = new Card("Estimate",
+				  			  "Estimate is a collectively determined amount of difficulty or time or complexity that may be required for a particular story or individually determined by assigned developer for a particular task.");
+		Card card7 = new Card("Task",
+				  			  "Task is a single thing that must be accomplished and can be estimated in time required that is less than a single workday.");
+		Card card8 = new Card("Job",
+				  			  "A job is something that the business is trying to accomplish that has value to the business.");
+		Card card9 = new Card("Sprint Retrospective",
+							  "Retrospective is a ceremony that occurs at the end of every sprint where the development team reviews how well they worked or did not work and comes to an agreement about what they can do in the next sprint to work better.");
+		Card card10 = new Card("Daily Stand-up",
+				   			   "Stand-up is a regular 15-20 minute meeting with all members of the development team when the team can discuss what they accomplished in the last day, what they are blocked on, and the scrum master can figure out how to help blocked team members become un-blocked.");
+
+		cardPile.cardLoad(card1);
+		cardPile.cardLoad(card2);
+		cardPile.cardLoad(card3);
+		cardPile.cardLoad(card4);
+		cardPile.cardLoad(card5);
+		cardPile.cardLoad(card6);
+		cardPile.cardLoad(card7);
+		cardPile.cardLoad(card8);
+		cardPile.cardLoad(card9);
+		cardPile.cardLoad(card10);
 		
 		ArrayList<Team> randomList = new ArrayList<Team>();
 		
@@ -199,15 +212,20 @@ public class PlayingPage extends JFrame {
 		btnSkip.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {				
 				
-				card = cardPile.DrawCard();	
-				WordDescription.setText(card.getCardDescription());
-				Word.setText(card.getCardName());
+				Card card = cardPile.drawCard();
+				if (card.getCardName() == "None") {
+					JOptionPane.showMessageDialog(null, "Game Over", "Trivia ", JOptionPane.INFORMATION_MESSAGE);
+	
+				} else {
+					WordDescription.setText(card.getCardDescription());
+					Word.setText(card.getCardName());
+				}	
 			}
 		});
 		btnSkip.setBounds(147, 350, 146, 60);
 		contentPane.add(btnSkip);
 		
-		
+		Card card = cardPile.drawCard();
 		WordDescription.setBounds(69, 124, 299, 205);
 		contentPane.add(WordDescription);
 		WordDescription.setColumns(10);
@@ -225,13 +243,17 @@ public class PlayingPage extends JFrame {
 						int pointPlusOne = teamList.get(i).getPoint();
 						String point = String.valueOf(pointPlusOne);
 						scoreInfoList.get(i).getJTextField().setText(point);
-						
 					}
 				}
 								
-				card = cardPile.DrawCard();	
-				WordDescription.setText(card.getCardDescription());
-				Word.setText(card.getCardName());				
+				Card card = cardPile.drawCard();
+				if (card.getCardName() == "None") {
+					JOptionPane.showMessageDialog(null, "Game Over", "Trivia ", JOptionPane.INFORMATION_MESSAGE);
+	
+				} else {
+					WordDescription.setText(card.getCardDescription());
+					Word.setText(card.getCardName());
+				}				
 			}
 		});
 		btnCorrect.setBounds(69, 350, 66, 60);
@@ -242,11 +264,17 @@ public class PlayingPage extends JFrame {
 
 			public void actionPerformed(ActionEvent e) {
 				
-				card = cardPile.DrawCard();	
-				WordDescription.setText(card.getCardDescription());
-				Word.setText(card.getCardName());
+				Card card = cardPile.drawCard();
+				if (card.getCardName() == "None") {
+					JOptionPane.showMessageDialog(null, "Game Over", "Trivia ", JOptionPane.INFORMATION_MESSAGE);
+	
+				} else {
+					WordDescription.setText(card.getCardDescription());
+					Word.setText(card.getCardName());
+				}
 			}
 		});
+		
 		btnWrong.setBounds(302, 350, 66, 60);
 		contentPane.add(btnWrong);
 		
@@ -264,8 +292,8 @@ public class PlayingPage extends JFrame {
 		Word.setHorizontalAlignment(SwingConstants.CENTER);
 		Word.setBounds(160, 83, 108, 39);
 		contentPane.add(Word);
-		
-		Word.setText(card.getCardName());
+		Card card11 = cardPile.drawCard();
+		Word.setText(card11.getCardName());
 		
 		
 		btnStartTurn.addActionListener(new ActionListener() {
