@@ -1,10 +1,20 @@
 package se459Team9;
 
+import org.junit.Rule;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 import static org.junit.Assert.*;
 
 import se459Team9.triviaGame.Card;
 
 public class CardTest {
+	
+	@Mock
+	Card myCard;
+	
+	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
+	
 	Card card = new Card();
 	public String name = "Test";
 	public String description = "This is a description";

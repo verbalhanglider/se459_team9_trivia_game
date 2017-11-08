@@ -1,13 +1,22 @@
 package se459Team9;
 
 import static org.junit.Assert.*;
-
+import org.junit.Rule;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 import org.junit.Test;
 
+import se459Team9.triviaGame.Card;
 import se459Team9.triviaGame.Player;
 
 public class PlayerTest {
 
+	@Mock
+	Card myPlayer;
+	
+	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
+	
 	@Test
 	public void testPlayer() {
 		Player playerOne = new Player("Jill");

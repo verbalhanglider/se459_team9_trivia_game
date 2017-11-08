@@ -1,15 +1,21 @@
 package se459Team9;
 
+import org.junit.Rule;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 import java.util.LinkedList;
 import java.util.Random;
-
 import javax.swing.JOptionPane;
-
 import se459Team9.triviaGame.Card;
-
 
 public class CardPile {
 
+	@Mock
+	CardPile myCardPile;
+	
+	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
+	
 	public LinkedList<Card> cardPileForPlay = new LinkedList<Card>();	   // before each game, shuffled cards moved into this object
 	public LinkedList<Card> cardPileForCount = new LinkedList<Card>();  // each displayed card will be  moved into this object
 
