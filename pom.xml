@@ -47,7 +47,7 @@
         	<execution>
             	<phase>package</phase>
             	<goals>
-                	<goal>single</goal>
+                	<goal>compile</goal>
             	</goals>
             	<configuration>
                 	<archive>
