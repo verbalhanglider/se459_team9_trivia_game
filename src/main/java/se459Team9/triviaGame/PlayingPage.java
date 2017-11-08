@@ -132,11 +132,23 @@ public class PlayingPage extends JFrame {
 			score.setTeamName(teamList.get(i).getName());
 			score.setLabel(newLabel);
 			
-			String teamColor = teamList.get(i).getName();
+			String teamColorString = teamList.get(i).getName();
+			int teamColor;
+			if (teamColorString == "Purple") {
+				teamColor = 1;
+			} else if (teamColorString == "Green") {
+				teamColor = 2;
+			} else if (teamColorString == "Yellow") {
+				teamColor = 3;
+			} else if (teamColorString == "Blue") {
+				teamColor = 4;
+			} else {
+				teamColor = 0;
+			}
 			switch(teamColor) {
-			case "Green Team" :
+			case 2 :
 				newLabel.setForeground(new Color(0, 255, 0));
-				if(currentTeamGuessing.getName() == teamColor) 
+				if(currentTeamGuessing.getName() == teamColorString) 
 				{
 					newLabel.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 				Word.setForeground(new Color(0, 255, 0));
@@ -144,9 +156,9 @@ public class PlayingPage extends JFrame {
 				}
 				break;
 				
-			case "Blue Team" :
+			case 4 :
 				newLabel.setForeground(new Color(0, 0, 255));
-				if(currentTeamGuessing.getName() == teamColor) 
+				if(currentTeamGuessing.getName() == teamColorString) 
 				{
 					newLabel.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 					Word.setForeground(new Color(0, 0, 255));
@@ -154,9 +166,9 @@ public class PlayingPage extends JFrame {
 				}
 				break;
 				
-			case "Purple Team" :
+			case 1 :
 				newLabel.setForeground(new Color(128, 0, 128));
-				if(currentTeamGuessing.getName() == teamColor)
+				if(currentTeamGuessing.getName() == teamColorString)
 				{
 					newLabel.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 					Word.setForeground(new Color(128, 0, 128));
@@ -164,9 +176,9 @@ public class PlayingPage extends JFrame {
 				}
 				break;
 				
-			case "Yellow Team" :
+			case 3 :
 				newLabel.setForeground(new Color(210, 105, 30));
-				if(currentTeamGuessing.getName() == teamColor)
+				if(currentTeamGuessing.getName() == teamColorString)
 				{
 					newLabel.setFont(new Font("Lucida Grande", Font.BOLD, 13));
 					Word.setForeground(new Color(210, 105, 30));
@@ -178,10 +190,8 @@ public class PlayingPage extends JFrame {
 				break;
 			}
 			
-			scoreInfoList.add(score);
-			
+			scoreInfoList.add(score);	
 		}
-		
 		
 		
 		JButton btnSkip = new JButton("SKIP");
@@ -270,7 +280,6 @@ public class PlayingPage extends JFrame {
 			 * 
 			 */
 			
-			@Override
 			public void actionPerformed(ActionEvent e) {
 				String curTeamName = currentTeamGuessing.getName();
 				int curTeamPos = 0;

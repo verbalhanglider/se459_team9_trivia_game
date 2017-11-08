@@ -4,25 +4,34 @@
 
   <groupId>se459Team9</groupId>
   <artifactId>triviaGame</artifactId>
-  <version>0.0.1-SNAPSHOT</version>  
+  <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
-
-  <name>triviaGame</name>
-  <url>https://github.com/verbalhanglider/se459_team9_trivia_game</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
   </properties>
-
+  
   <dependencies>
+  	<dependency>
+	  <groupId>org.eclipse.swt</groupId>
+	  <artifactId>Org.eclipse.swt.win32.win32.x86_64</artifactId>
+	  <version>4.3</version>
+	  <scope>runtime</scope>
+	</dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>4.12</version>
       <scope>test</scope>
     </dependency>
+	<dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>1.9.5</version>
+      <scope>test</scope>
+	</dependency>  
   </dependencies>
+  
 
   <organization>
   	<name>Depaul University SE459 TEam9</name>
@@ -34,11 +43,36 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.7.0</version>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
-        </configuration>
+    	<executions>
+        	<execution>
+            	<phase>package</phase>
+            	<goals>
+                	<goal>single</goal>
+            	</goals>
+            	<configuration>
+                	<archive>
+                		<manifest>
+                    		<mainClass>
+                        	org.baeldung.executable.ExecutableMavenJar
+                    		</mainClass>
+                		</manifest>
+                	</archive>
+                	<descriptorRefs>
+                    	<descriptorRef>jar-with-dependencies</descriptorRef>
+                	</descriptorRefs>
+		           <source>1.8</source>
+           		   <target>1.8</target>                	
+            	</configuration>
+        	</execution>
+    	</executions>        
+ 
       </plugin>
+      
     </plugins>
   </build>
+  <scm>
+  	<url>https://github.com/verbalhanglider/se459_team9_trivia_game</url>
+  </scm>
+  <name>Depaul University SE459 Team 9 Trivia Game</name>
+  <description>This is a project </description>
 </project>
