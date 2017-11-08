@@ -13,7 +13,7 @@ public class TeamTest {
 	@Test
 	public void testTeam() {
 		Team teamOne = new Team("Blue");
-		Team teamTwo = new Team("Green");
+		Team teamTwo = new Team("Blue");
 		assertEquals(teamOne, teamTwo);
 		assertNotEquals(teamOne, null);
 		assertNotEquals(teamTwo, null);
