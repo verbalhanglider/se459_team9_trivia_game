@@ -31,90 +31,10 @@
   	<name>Depaul University SE459 TEam9</name>
   	<url>https://trello.com/b/TL5SRWFg/se459-scrum-board</url>
   </organization>
-  <build>
-      <plugins>
-       <plugin>
-  		<groupId>org.apache.maven.plugins</groupId>
-  		<artifactId>maven-dependency-plugin</artifactId>
-  		<executions>
-    		<execution>
-      			<id>copy-dependencies</id>
-      			<phase>prepare-package</phase>
-      			<goals>
-        			<goal>copy-dependencies</goal>
-      			</goals>
-      			<configuration>
-        			<outputDirectory>${project.build.directory}/${project.build.finalName}.lib</outputDirectory>
-      			</configuration>
-    		</execution>
-		</executions>
-	   </plugin>
-	   <plugin>
-  		<groupId>org.apache.maven.plugins</groupId>
-  		<artifactId>maven-jar-plugin</artifactId>
-  		<configuration>
-    		<archive>
-      			<manifest>
-        			<addClasspath>true</addClasspath>
-        			<classpathPrefix>${project.build.finalName}.lib/</classpathPrefix>
-        			<mainClass>${fully.qualified.main.class}</mainClass>
-      			</manifest>
-    		</archive>
-  		</configuration>
-	   </plugin>
-		<plugin>
-		  <groupId>org.apache.maven.plugins</groupId>
-		  <artifactId>maven-antrun-plugin</artifactId>
-		  <executions>
-		    <execution>
-		      <id>antrun-archive</id>
-		      <phase>package</phase>
-		      <goals>
-		        <goal>run</goal>
-		      </goals>
-		      <configuration>
-		        <target>
-		          <property name="final.name" value="${project.build.directory}/${project.build.finalName}"/>
-		          <property name="archive.includes" value="${project.build.finalName}.${project.packaging} ${project.build.finalName}.lib/*"/>
-		          <property name="tar.destfile" value="${final.name}.tar"/>
-		          <zip basedir="${project.build.directory}" destfile="${final.name}.zip" includes="${archive.includes}" />
-		          <tar basedir="${project.build.directory}" destfile="${tar.destfile}" includes="${archive.includes}" />
-		          <gzip src="${tar.destfile}" destfile="${tar.destfile}.gz" />
-		          <bzip2 src="${tar.destfile}" destfile="${tar.destfile}.bz2" />
-		        </target>
-		      </configuration>
-		    </execution>
-		  </executions>
-		</plugin>
-		<plugin>
-		  <groupId>org.apache.maven.plugins</groupId>
-		  <artifactId>maven-antrun-plugin</artifactId>
-		  <executions>
-		    <execution>
-		      <id>antrun-archive</id>
-		      <phase>package</phase>
-		      <goals>
-		        <goal>run</goal>
-		      </goals>
-		      <configuration>
-		        <target>
-		          <property name="final.name" value="${project.build.directory}/${project.build.finalName}"/>
-		          <property name="archive.includes" value="${project.build.finalName}.${project.packaging} ${project.build.finalName}.lib/*"/>
-		          <property name="tar.destfile" value="${final.name}.tar"/>
-		          <zip basedir="${project.build.directory}" destfile="${final.name}.zip" includes="${archive.includes}" />
-		          <tar basedir="${project.build.directory}" destfile="${tar.destfile}" includes="${archive.includes}" />
-		          <gzip src="${tar.destfile}" destfile="${tar.destfile}.gz" />
-		          <bzip2 src="${tar.destfile}" destfile="${tar.destfile}.bz2" />
-		        </target>
-		      </configuration>
-		    </execution>
-		  </executions>
-		</plugin>
-      </plugins>
-  </build>
+
   <scm>
   	<url>https://github.com/verbalhanglider/se459_team9_trivia_game</url>
   </scm>
-  <name>Depaul University SE459 Team 9 Trivia Game</name>
+  <name>DePaul University SE459 Team 9 Trivia Game</name>
   <description>This is a project </description>
 </project>
