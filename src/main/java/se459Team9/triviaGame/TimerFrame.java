@@ -48,7 +48,6 @@ public class TimerFrame extends JFrame {
 		    			if (startSec > MINSECONDS) {
 		    				startSec = startSec - 1;
 		    		        timerlabel.setText(format.format(startMin) + ":" + format.format(startSec));
-		    		        System.out.println(startSec);
 		    			}
 		    			else if (startSec == MINSECONDS) {
 		    				if (startMin == 0) {

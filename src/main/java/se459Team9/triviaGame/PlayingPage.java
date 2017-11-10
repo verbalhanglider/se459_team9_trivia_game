@@ -204,6 +204,8 @@ public class PlayingPage extends JFrame {
 			scoreInfoList.add(score);	
 		}
 		
+		TimerFrame newTimer = new TimerFrame();
+		newTimer.setVisible(true);
 		
 		JButton btnSkip = new JButton("SKIP");
 		btnSkip.setFont(new Font("Lucida Grande", Font.BOLD, 35));
@@ -289,12 +291,6 @@ public class PlayingPage extends JFrame {
 		btnStartTurn.setBounds(69, 11, 89, 23);
 		contentPane.add(btnStartTurn);
 		
-		CountDownClock = new JTextField();
-		CountDownClock.setBounds(10, 12, 55, 20);
-		contentPane.add(CountDownClock);
-		CountDownClock.setColumns(10);
-		
-		
 		Word.setFont(new Font("Lucida Grande", Font.PLAIN, 20));
 		Word.setHorizontalAlignment(SwingConstants.CENTER);
 		Word.setBounds(160, 83, 108, 39);
@@ -340,8 +336,7 @@ public class PlayingPage extends JFrame {
 				JDialog dialog = optionPane.createDialog("Alert!");
 				dialog.setAlwaysOnTop(true); // to show top of all other application
 				dialog.setVisible(true); // to visible the dialog	
-				TimerFrame newTimer = new TimerFrame();
-				newTimer.setVisible(true);
+
 			}
 		});
 	}
