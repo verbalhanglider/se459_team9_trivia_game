@@ -1,4 +1,4 @@
-package ui;
+package se459Team9.triviaGame;
 
 import java.awt.EventQueue;
 
@@ -18,9 +18,6 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
-
-import teams.Team;
-
 import java.awt.Color;
 import javax.swing.JTextField;
 import java.awt.event.KeyAdapter;
@@ -133,7 +130,7 @@ public class GameSettingPage extends JFrame {
 				if (allTeams.size() == 2 || allTeams.size() == 4) {
 					PlayingPage playingPage = new PlayingPage(allTeams);
 					ProhibitedWordList prohibitedWordList = new ProhibitedWordList();
-					frame.dispose();
+					prohibitedWordList.show();
 					playingPage.setVisible(true);
 					x = playingPage.getX();
 					y = playingPage.getY();
@@ -317,9 +314,6 @@ public class GameSettingPage extends JFrame {
 				YellowPlayer1.setText("");
 			}
 		});
-				
-		
-		
 		YellowPlayer2 = new JTextField();
 		YellowPlayer2.setText("Enter name");
 		YellowPlayer2.setForeground(Color.BLACK);
