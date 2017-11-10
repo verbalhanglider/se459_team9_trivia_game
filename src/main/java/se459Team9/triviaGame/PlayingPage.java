@@ -212,6 +212,11 @@ public class PlayingPage extends JFrame {
 				
 				Card card = cardPile.drawCard();
 				if (card.getCardName() == "None") {
+					teamList.size();
+					for (int i=0; i < teamList.size(); i++) {
+						
+					}
+					
 					JOptionPane.showMessageDialog(null, "Game Over", "Trivia ", JOptionPane.INFORMATION_MESSAGE);
 	
 				} else {
@@ -246,7 +251,11 @@ public class PlayingPage extends JFrame {
 								
 				Card card = cardPile.drawCard();
 				if (card.getCardName() == "None") {
-					JOptionPane.showMessageDialog(null, "Game Over", "Trivia ", JOptionPane.INFORMATION_MESSAGE);
+					teamList.sort((a, b) -> Team.compare(a,b));
+					Team winner = teamList.get(teamList.size() -1);
+					String message = "Game over! Winning team is " + winner.getName() + " with a score of " + Integer.toString(winner.getPoint());
+					
+					JOptionPane.showMessageDialog(null, message, "Trivia Game", JOptionPane.INFORMATION_MESSAGE);
 	
 				} else {
 					WordDescription.setText(card.getCardDescription());
@@ -326,17 +335,13 @@ public class PlayingPage extends JFrame {
 				currentTeamGuessing = nextTeam;
 				String lastClueGiver = currentTeamGuessing.getCurrentClueGiver();
 				String lastGuesser = currentTeamGuessing.getCurrentGuesser();
-
 				String message = currentTeamGuessing.setNewRoles(lastClueGiver, lastGuesser);
 				JOptionPane optionPane = new JOptionPane(message,JOptionPane.WARNING_MESSAGE);
 				JDialog dialog = optionPane.createDialog("Alert!");
 				dialog.setAlwaysOnTop(true); // to show top of all other application
-				//dialog.setLocation(frame.getX() + frame.getWidth()/2 - dialog.getWidth()/2, frame.getY() + frame.getHeight()/2 - dialog.getHeight()/2);
 				dialog.setVisible(true); // to visible the dialog	
-
-
 			}
-			
 		});
 	}
 }
+		

@@ -170,4 +170,12 @@ public class Team {
 	public CardPile getDrawnCardPile() {
 		return drawnCardPile;
 	}
+
+	public static int compare(Team a, Team b) {
+        if (a.getPoint() < b.getPoint()){
+            return -1;
+        }else{
+            return 1;
+        }
+	}
 }

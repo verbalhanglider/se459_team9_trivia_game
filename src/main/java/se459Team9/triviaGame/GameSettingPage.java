@@ -14,18 +14,19 @@ import javax.swing.JDialog;
 
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 import javax.swing.border.LineBorder;
 import java.awt.Color;
 import javax.swing.JTextField;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 
 public class GameSettingPage extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	static GameSettingPage frame;
 	private JTextField PurplePlayer1;
@@ -130,7 +131,7 @@ public class GameSettingPage extends JFrame {
 				if (allTeams.size() == 2 || allTeams.size() == 4) {
 					PlayingPage playingPage = new PlayingPage(allTeams);
 					ProhibitedWordList prohibitedWordList = new ProhibitedWordList();
-					prohibitedWordList.show();
+					prohibitedWordList.setVisible(true);
 					playingPage.setVisible(true);
 					x = playingPage.getX();
 					y = playingPage.getY();
