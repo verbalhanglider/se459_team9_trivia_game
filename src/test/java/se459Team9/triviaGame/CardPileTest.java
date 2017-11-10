@@ -2,7 +2,8 @@ package se459Team9.triviaGame;
 
 import org.junit.Rule;
 import org.junit.Test;
-import org.mockito.Mock;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import se459Team9.triviaGame.Card;
@@ -14,24 +15,23 @@ import org.junit.BeforeClass;
 
 public class CardPileTest {
 
-	@Mock
-	CardPile myCardPile;
+	private static CardPile mockedCardPile;
+	private static Card card1;
 	
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();	
 	
-	private static CardPile cardPile;
-	private static Card card;
-	
 	@BeforeClass
 	public static  void setUp() {
-		cardPile = new CardPile();
-		card = new Card("Scrum", "Scrum is..");
-		cardPile.cardLoad(card);
+		mockedCardPile = mock(CardPile.class);
+		card1 = new Card("Scrum", "Scrum is..");
+		when(mockedCardPile.drawCard()).thenReturn(card1);		
 	}
 	
 	@Test
 	public void testDrawCard() { // each draw randomly take a card away from CardPileForPlay list
-		Card aCard = cardPile.drawCard();
-		assertEquals(aCard.getCardName(), "Scrum");		
+		String name = "Scrum";
+		Card aCard = mockedCardPile.drawCard();
+		assertNotNull(aCard);
+		assertEquals(name, aCard.getCardName());		
 	}
 }
