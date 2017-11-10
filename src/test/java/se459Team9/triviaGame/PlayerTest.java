@@ -1,33 +1,43 @@
 package se459Team9.triviaGame;
 
 import static org.junit.Assert.*;
+
+import org.junit.BeforeClass;
 import org.junit.Rule;
-import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 import org.junit.Test;
 
-import se459Team9.triviaGame.Card;
 import se459Team9.triviaGame.Player;
 
 public class PlayerTest {
 
-	@Mock
-	Card myPlayer;
+	private static Player player1;
+	private static Player player2;
+	private static Player player3;
+	
+	@BeforeClass
+	public static  void setUp() {
+		player1 = new Player("Diane");
+		player2 = new Player("Jill");
+		player3 = new Player("Diane");
+	}
 	
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();
 	
 	@Test
-	public void testPlayer() {
-		Player playerOne = new Player("Jill");
-		Player playerTwo = new Player("Jill");
-		assertEquals(playerOne, playerTwo);
+	public void testPlayerEquals() {
+		assertEquals(player1, player3);
 	}
 
 	@Test
+	public void testPlayerNotEquals() {
+		assertNotEquals(player1, player2);
+	}
+	
+	@Test
 	public void testGetName() {
-		Player newPlayer = new Player("Jill");
-		assertEquals(newPlayer.getName(), "Jill");
+		assertEquals(player1.getName(), "Diane");
 	}
 
 	@Test
@@ -44,13 +54,10 @@ public class PlayerTest {
 
 	@Test
 	public void testSetCurrentRole() {
-		Player newPlayer = new Player("Jill");
-		newPlayer.setCurrentRole("clue-giver");
-		assertEquals(newPlayer.getCurrentRole(), "clue-giver");
-		newPlayer.setCurrentRole("clue-giver");
-		assertEquals(newPlayer.getCurrentRole(), "guesser");
-		newPlayer.setCurrentRole("clue-giver");
-		assertEquals(newPlayer.getCurrentRole(), "clue-giver");
+		player1.setCurrentRole("clue-giver");
+		assertEquals(player1.getCurrentRole(), "clue-giver");
+		player1.setCurrentRole("clue-giver");
+		assertEquals(player1.getCurrentRole(), "guesser");
 	}
 
 }

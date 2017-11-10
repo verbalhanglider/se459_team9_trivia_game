@@ -9,6 +9,8 @@ import se459Team9.triviaGame.Card;
 import se459Team9.triviaGame.CardPile;
 import static org.junit.Assert.*;
 
+import org.junit.BeforeClass;
+
 
 public class CardPileTest {
 
@@ -17,12 +19,19 @@ public class CardPileTest {
 	
 	@Rule public MockitoRule mockitoRule = MockitoJUnit.rule();	
 	
+	private static CardPile cardPile;
+	private static Card card;
+	
+	@BeforeClass
+	public static  void setUp() {
+		cardPile = new CardPile();
+		card = new Card("Scrum", "Scrum is..");
+		cardPile.cardLoad(card);
+	}
+	
 	@Test
 	public void testDrawCard() { // each draw randomly take a card away from CardPileForPlay list
-		Card aCard = new Card("Scrum", "Scrum is..");
-		CardPile cardPile = new CardPile();
-		cardPile.cardLoad(aCard);
-		Card drawnCard = cardPile.drawCard();
-		assertEquals(aCard.getCardName(), drawnCard.getCardName());		
+		Card aCard = cardPile.drawCard();
+		assertEquals(aCard.getCardName(), "Scrum");		
 	}
 }
