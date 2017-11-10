@@ -1,4 +1,4 @@
-package timer;
+package se459Team9.triviaGame;
 
 import java.awt.*;
 import java.awt.event.*;
