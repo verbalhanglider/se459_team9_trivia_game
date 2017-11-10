@@ -340,6 +340,8 @@ public class PlayingPage extends JFrame {
 				JDialog dialog = optionPane.createDialog("Alert!");
 				dialog.setAlwaysOnTop(true); // to show top of all other application
 				dialog.setVisible(true); // to visible the dialog	
+				TimerFrame newTimer = new TimerFrame();
+				newTimer.setVisible(true);
 			}
 		});
 	}

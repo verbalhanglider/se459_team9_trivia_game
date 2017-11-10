@@ -72,6 +72,19 @@ public class TimerFrame extends JFrame {
 		contentPane.add(startTimer);
 	}
 
+	public void start() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TimerFrame timerframe = new TimerFrame();
+					timerframe.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+		
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
