@@ -45,8 +45,6 @@ public class PlayingPage extends JFrame {
         return (sourceList == null || sourceList.size() == 0);  
     }  
 	
-	
-	
 	public PlayingPage(ArrayList<Team> teams) {
 
 		
