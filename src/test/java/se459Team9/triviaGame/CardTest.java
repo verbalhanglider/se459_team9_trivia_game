@@ -1,4 +1,4 @@
-package se459Team9;
+package se459Team9.triviaGame;
 
 import org.junit.Rule;
 import org.junit.Test;

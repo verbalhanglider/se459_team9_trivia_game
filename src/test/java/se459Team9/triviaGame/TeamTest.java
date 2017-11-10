@@ -1,4 +1,4 @@
-package se459Team9;
+package se459Team9.triviaGame;
 
 import static org.junit.Assert.*;
 import java.util.ArrayList;
