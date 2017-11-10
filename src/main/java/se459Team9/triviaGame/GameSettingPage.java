@@ -100,8 +100,6 @@ public class GameSettingPage extends JFrame {
 				}
 				
 				if (player3.contains("Enter name") || player4.contains("Enter name")) {
-					System.out.println(player3);
-					System.out.println("hello");
 					
 				} else {
 					Team newTeam = new Team("Blue Team");
