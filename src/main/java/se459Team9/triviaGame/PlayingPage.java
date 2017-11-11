@@ -204,9 +204,6 @@ public class PlayingPage extends JFrame {
 			scoreInfoList.add(score);	
 		}
 		
-		TimerFrame newTimer = new TimerFrame();
-		newTimer.setVisible(true);
-		
 		JButton btnSkip = new JButton("SKIP");
 		btnSkip.setFont(new Font("Lucida Grande", Font.BOLD, 35));
 		btnSkip.addActionListener(new ActionListener() {
@@ -214,13 +211,8 @@ public class PlayingPage extends JFrame {
 				
 				Card card = cardPile.drawCard();
 				if (card.getCardName() == "None") {
-					teamList.size();
-					for (int i=0; i < teamList.size(); i++) {
-						
-					}
-					
-					JOptionPane.showMessageDialog(null, "Game Over", "Trivia ", JOptionPane.INFORMATION_MESSAGE);
-	
+					WinPage wp = new WinPage(teamList);
+					wp.setVisible(true);
 				} else {
 					WordDescription.setText(card.getCardDescription());
 					Word.setText(card.getCardName());
@@ -253,11 +245,12 @@ public class PlayingPage extends JFrame {
 								
 				Card card = cardPile.drawCard();
 				if (card.getCardName() == "None") {
-					teamList.sort((a, b) -> Team.compare(a,b));
-					Team winner = teamList.get(teamList.size() -1);
-					String message = "Game over! Winning team is " + winner.getName() + " with a score of " + Integer.toString(winner.getPoint());
-					
-					JOptionPane.showMessageDialog(null, message, "Trivia Game", JOptionPane.INFORMATION_MESSAGE);
+					WinPage wp = new WinPage(teamList);
+					wp.setVisible(true);
+//					Team winner = teamList.get(teamList.size() -1);
+//					String message = "Game over! Winning team is " + winner.getName() + " with a score of " + Integer.toString(winner.getPoint());
+//					
+//					JOptionPane.showMessageDialog(null, message, "Trivia Game", JOptionPane.INFORMATION_MESSAGE);
 	
 				} else {
 					WordDescription.setText(card.getCardDescription());
@@ -275,7 +268,8 @@ public class PlayingPage extends JFrame {
 				
 				Card card = cardPile.drawCard();
 				if (card.getCardName() == "None") {
-					JOptionPane.showMessageDialog(null, "Game Over", "Trivia ", JOptionPane.INFORMATION_MESSAGE);
+					WinPage wp = new WinPage(teamList);
+					wp.setVisible(true);
 	
 				} else {
 					WordDescription.setText(card.getCardDescription());

@@ -74,45 +74,67 @@ public class WinPage extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				GameSettingPage gameSetting = new GameSettingPage();
 				gameSetting.setVisible(true);
-				frame.setVisible(false);
+				GameSettingPage gspage = new GameSettingPage();
+				gspage.setVisible(true);
 			}
 		});
 		btnPlayAgain.setBounds(77, 305, 270, 29);
 		contentPane.add(btnPlayAgain);
 		
-		for(int i = 0; i < teamList.size(); i ++) {
-			if(i == 0 ) {
-				JLabel currentPlace = new JLabel("The winner is " + teamList.get(i).getName() + " with " + teamList.get(i).getPoint() + " points.");
-				currentPlace.setFont(new Font("Lucida Grande", Font.BOLD, 14));
-				currentPlace.setForeground(this.getColor(teamList.get(i).getName()));
-				currentPlace.setHorizontalAlignment(SwingConstants.LEFT);
-				currentPlace.setBounds(50, 50, 400, 100);
-				contentPane.add(currentPlace);
+		teamList.sort((a, b) -> Team.compare(a,b));
+		
+		if (teamList.size() == 4)
+		{
+			for(int i = 0; i < teamList.size(); i ++) {
+				if(i == 3 ) {
+					JLabel currentPlace = new JLabel("The winner is " + teamList.get(i).getName() + " with " + teamList.get(i).getPoint() + " points.");
+					currentPlace.setFont(new Font("Lucida Grande", Font.BOLD, 14));
+					currentPlace.setForeground(this.getColor(teamList.get(i).getName()));
+					currentPlace.setHorizontalAlignment(SwingConstants.LEFT);
+					currentPlace.setBounds(50, 50, 400, 100);
+					contentPane.add(currentPlace);
+				}
+				if(i == 2) {
+					JLabel currentPlace = new JLabel("In second place is " + teamList.get(i).getName() + " with " + teamList.get(i).getPoint() + " points.");
+					currentPlace.setFont(new Font("Lucida Grande", Font.BOLD, 14));
+					currentPlace.setForeground(this.getColor(teamList.get(i).getName()));
+					currentPlace.setHorizontalAlignment(SwingConstants.LEFT);
+					currentPlace.setBounds(50, 105, 400, 100);
+					contentPane.add(currentPlace);
+				}
+				if(i == 1) {
+					JLabel currentPlace = new JLabel("In third place is " + teamList.get(i).getName() + " with " + teamList.get(i).getPoint() + " points.");
+					currentPlace.setFont(new Font("Lucida Grande", Font.BOLD, 14));
+					currentPlace.setForeground(this.getColor(teamList.get(i).getName()));
+					currentPlace.setHorizontalAlignment(SwingConstants.LEFT);
+					currentPlace.setBounds(50, 160, 400, 100);
+					contentPane.add(currentPlace);
+				}
+				if(i == 0) {
+					JLabel currentPlace = new JLabel("In dead last is " + teamList.get(i).getName() + " with " + teamList.get(i).getPoint() + " points.");
+					currentPlace.setFont(new Font("Lucida Grande", Font.BOLD, 14));
+					currentPlace.setForeground(this.getColor(teamList.get(i).getName()));
+					currentPlace.setHorizontalAlignment(SwingConstants.LEFT);
+					currentPlace.setBounds(50, 215, 400, 100);
+					contentPane.add(currentPlace);
+				}
 			}
-			if(i == 1) {
-				JLabel currentPlace = new JLabel("In second place is " + teamList.get(i).getName() + " with " + teamList.get(i).getPoint() + " points.");
-				currentPlace.setFont(new Font("Lucida Grande", Font.BOLD, 14));
-				currentPlace.setForeground(this.getColor(teamList.get(i).getName()));
-				currentPlace.setHorizontalAlignment(SwingConstants.LEFT);
-				currentPlace.setBounds(50, 105, 400, 100);
-				contentPane.add(currentPlace);
-			}
-			if(i == 2) {
-				JLabel currentPlace = new JLabel("In third place is " + teamList.get(i).getName() + " with " + teamList.get(i).getPoint() + " points.");
-				currentPlace.setFont(new Font("Lucida Grande", Font.BOLD, 14));
-				currentPlace.setForeground(this.getColor(teamList.get(i).getName()));
-				currentPlace.setHorizontalAlignment(SwingConstants.LEFT);
-				currentPlace.setBounds(50, 160, 400, 100);
-				contentPane.add(currentPlace);
-			}
-			if(i == 3) {
-				JLabel currentPlace = new JLabel("In dead last is " + teamList.get(i).getName() + " with " + teamList.get(i).getPoint() + " points.");
-				currentPlace.setFont(new Font("Lucida Grande", Font.BOLD, 14));
-				currentPlace.setForeground(this.getColor(teamList.get(i).getName()));
-				currentPlace.setHorizontalAlignment(SwingConstants.LEFT);
-				currentPlace.setBounds(50, 215, 400, 100);
-				contentPane.add(currentPlace);
-			}
+		} else {
+			Team winner = teamList.get(teamList.size() -1);
+			Team loser = teamList.get(0);
+			JLabel currentPlace = new JLabel("The winner is " + winner.getName() + " with " + winner.getPoint() + " points.");
+			currentPlace.setFont(new Font("Lucida Grande", Font.BOLD, 14));
+			currentPlace.setForeground(this.getColor(winner.getName()));
+			currentPlace.setHorizontalAlignment(SwingConstants.LEFT);
+			currentPlace.setBounds(50, 50, 400, 100);
+			contentPane.add(currentPlace);
+			JLabel lastPlace = new JLabel("In second place is " + loser.getName() + " with " + loser.getPoint() + " points.");
+			lastPlace.setFont(new Font("Lucida Grande", Font.BOLD, 14));
+			lastPlace.setForeground(this.getColor(loser.getName()));
+			lastPlace.setHorizontalAlignment(SwingConstants.LEFT);
+			lastPlace.setBounds(50, 105, 400, 100);
+			contentPane.add(lastPlace);	
+
 		}
 	}
 }
