@@ -5,100 +5,95 @@ import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JFrame;
-import javax.swing.Timer;
+import javax.swing.border.EmptyBorder;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.text.NumberFormat;
 
 public class TimerFrame extends JFrame {
-    long remaining; // How many milliseconds remain in the countdown.
-    long lastUpdate; // When count was last updated
-    int startMin = 2;
-    int startSec = 0;
-    JLabel label; // Displays the count
-    private JPanel contentPane;
-    NumberFormat format;
-    public static boolean working;
-    
-    public void display(){
-        setTitle("Timer");
-        setBounds(100, 100, 450, 300);
-        setLayout(new GridLayout(0, 1));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        add(new TimerButton("Start timer", 2 * (60 * 1000)));
-        pack();
-        setVisible(true);
-    }
+	int startMin = 2;
+	int startSec = 0;
+	private final int MINSECONDS = 0;
+	private JPanel contentPane;
+	JLabel timerlabel = new JLabel();
+	NumberFormat format;
+	
+	private Timer timer = new Timer();
 
-    public TimerFrame() {
-    	TimerFrame timerframe = new TimerFrame();
-        timerframe.display();
-        timerframe.updateTime();
-    }
-    
-    private void startTime() {
-        label.setText(format.format(startMin) + ":" + format.format(startSec));
-    }
+	public TimerFrame() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 400);
+		setTitle("TIMER");
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		format = NumberFormat.getNumberInstance();
+        format.setMinimumIntegerDigits(2); 
+		
+		timerlabel.setFont(new Font("Lucida Grande", Font.BOLD, 40));
+		timerlabel.setHorizontalAlignment(SwingConstants.CENTER);
+		timerlabel.setBounds(25, 6, 406, 45);
+		contentPane.add(timerlabel);
+		
+		JButton startTimer = new JButton("Start timer");
+		startTimer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				TimerTask task;
+				timerlabel.setText(format.format(startMin) + ":" + format.format(startSec));
+		    	
+		    	task = new TimerTask() {
+		    		
+		    		public void run() {
+		    			if (startSec > MINSECONDS) {
+		    				startSec = startSec - 1;
+		    		        timerlabel.setText(format.format(startMin) + ":" + format.format(startSec));
+		    			}
+		    			else if (startSec == MINSECONDS) {
+		    				if (startMin == 0) {
+		    					timerlabel.setText("Times up!");
+			    				timer.cancel();
+		    				}
+		    				else {
+		    					startMin = startMin - 1;
+		    					startSec = 60;
+		    				}
+		    				
+		    			}
+		    		}
+		    	};
+		    	timer.schedule(task, 0, 1000);
+			}
+		});
+		
+		startTimer.setFont(new Font("Lucida Grande", Font.BOLD, 25));
+		startTimer.setBounds(127, 310, 205, 42);
+		contentPane.add(startTimer);
+	}
 
-    public void updateTime() {
-        long now = System.currentTimeMillis(); // current time in ms
-        long elapsed = now - lastUpdate; // ms elapsed since last update
-        remaining -= elapsed; // adjust remaining time
-        lastUpdate = now; // remember this update time
-
-        // Convert remaining milliseconds to mm:ss format and display
-        if (remaining < 0) remaining = 0;
-
-        int minutes = (int) (remaining / 60000);
-        int seconds = (int) ((remaining) / 1000);
-        label.setText(format.format(minutes) + ":" + format.format(seconds));
-    }
-
-    private class TimerButton extends JButton {
-
-        private final Timer timer;
-
-        public TimerButton(String text, int delay) {
-            super(text);
-            label = new JLabel();
-            label.setHorizontalAlignment(SwingConstants.CENTER);
-            label.setOpaque(true); // So label draws the background color
-            getContentPane().add(label, BorderLayout.CENTER);
-            format = NumberFormat.getNumberInstance();
-            format.setMinimumIntegerDigits(2); // pad with 0 if necessary
-            this.addActionListener(new StartListener());
-            timer = new Timer(delay, new StopListener());
-        }
-
-        private class StartListener implements ActionListener {
-
-            public void actionPerformed(ActionEvent e) {
-                TimerFrame.this.setVisible(true);
-                startTime();
-                timer.start();
-
-
-            }
-        }
-
-        private class StopListener implements ActionListener {
-
-            public void actionPerformed(ActionEvent e) {
-                timer.stop();
-                TimerFrame.this.setVisible(true);
-                label.setText("Times up!");
-            }
-        }
-    }
-
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                TimerFrame timerframe = new TimerFrame();
-                timerframe.display();
-                timerframe.updateTime();
-            }
-        });
+	public void start() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TimerFrame timerframe = new TimerFrame();
+					timerframe.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+		
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TimerFrame timerframe = new TimerFrame();
+					timerframe.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
     }
 }

@@ -54,29 +54,20 @@ public class InstructionsPage extends JDialog {
 		}
 		
 		JTextArea txtrTest = new JTextArea();
-		txtrTest.setText("Rule 1: Teams are composed of pairs.\n"
-				+ "Rule 2: The trivia cards are placed in a single stack and used by all teams.\n"
-				+ "Rule 3: A round last 2 minutes multiplied by the number of teams.\n"
-				+ "Rule 4: During a round, one player from a team pulls trivia cards from the \n"
-				+ "stack and after reading the brief description tries to get their teammate \n"
-				+ "to guess the agile term on that card by giving the teammate clues.\n"
-				+ "Rule 5: Reader is not allowed to use any agile words in clues from the \n"
-				+ "prohibited list. \n"
-				+ "Rule 6: When the guesser guesses correctly, the reader puts the card in the \n"
-				+ "team’s guessed cards and draws a new card. When the guesser guesses \n"
-				+ "incorrectly the reader puts the card in the game “wrong guess” pool \n"
-				+ "Rule 7: A reader can skip a card for any reason, but a skipped card counts \n"
-				+ "as a wrong answer. \n"
-				+ "Rule 8: If a reader uses an agile word in a clue from the prohibited list, \n"
-				+ "the reader must put the card in the “wrong guess” pool.\n"
-				+ "Rule 9: The reader keeps pulling cards from the trivia stack until the time \n"
-				+ "is up.\n"
-				+ "Rule 10: Once the time is up, the next team has a turn. This goes on until \n"
-				+ "all teams have had an opportunity to guess. Once it comes back to the first \n"
-				+ "team, the player who was guessing now has an opportunity to read and the \n"
-				+ "player who was reading has to be a guesser. Do this for every team. This is \n"
-				+ "the start of a new round.\n"
-				+ "Rule 11: A game lasts eight rounds.");
+		txtrTest.setText("How to Play:"
+				+ "Click Play and then fill in the teams that will be playing. There must be\n" 
+				+ " at least 2 teams of 2 players and a maximum of 4 teams of 2 players. After you \n" 
+				+ "have defined your teams click on Start Game and three windows will show up. \n"
+				+ "The main window is the game screen. It shows the cards that you need to give clues \n" 
+				+ "and give the guessing team a point for a correct guess by clicking Correct or skip a \n"
+				+ "card if it is too hard and get no points but a new card. When you are ready to play \n"
+				+ "and the first team guesser is behind the computer click Start Timer on the timer \n"
+				+ "window. Now the clue giver should try to get through as many cards as they can \n" 
+				+ "until the timer window says Time's up. When Time's up appears it's time to \n" 
+				+ "click on the Next button in the game screen. The game will show a pop-up alert " 
+				+ "telling you which team is next and what role each player should play. When the \n" 
+				+ "new team is ready to guess, you should click Start timer and play until the \n" 
+				+ "Timer's up alert shows up. Do this until there are no more cards");	
 		txtrTest.setBounds(17, 52, 620, 418);
 		txtrTest.setEditable(false);
 		txtrTest.setAutoscrolls(true);

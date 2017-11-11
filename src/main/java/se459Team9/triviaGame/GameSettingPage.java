@@ -100,8 +100,6 @@ public class GameSettingPage extends JFrame {
 				}
 				
 				if (player3.contains("Enter name") || player4.contains("Enter name")) {
-					System.out.println(player3);
-					System.out.println("hello");
 					
 				} else {
 					Team newTeam = new Team("Blue Team");
@@ -131,12 +129,21 @@ public class GameSettingPage extends JFrame {
 				if (allTeams.size() == 2 || allTeams.size() == 4) {
 					PlayingPage playingPage = new PlayingPage(allTeams);
 					ProhibitedWordList prohibitedWordList = new ProhibitedWordList();
+					TimerFrame newTimer = new TimerFrame();
+					
+					newTimer.setVisible(true);
 					prohibitedWordList.setVisible(true);
 					playingPage.setVisible(true);
 					x = playingPage.getX();
 					y = playingPage.getY();
 					x += playingPage.getWidth() + 10;
 					
+					int timer_x = playingPage.getX();
+					int timer_y = playingPage.getY();
+					timer_y = playingPage.getHeight() + 100;
+					
+					newTimer.setBounds(timer_x, timer_y, newTimer.getWidth(), newTimer.getHeight());
+					newTimer.setVisible(true);
 					prohibitedWordList.setBounds(x, y, prohibitedWordList.getWidth(), prohibitedWordList.getHeight());
 					prohibitedWordList.setVisible(true);				
 				} else {
