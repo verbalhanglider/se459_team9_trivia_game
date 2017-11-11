@@ -54,7 +54,7 @@ public class InstructionsPage extends JDialog {
 		}
 		
 		JTextArea txtrTest = new JTextArea();
-		txtrTest.setText("How to Play:"
+		txtrTest.setText("How to Play:\n\n"
 				+ "Click Play and then fill in the teams that will be playing. There must be\n" 
 				+ " at least 2 teams of 2 players and a maximum of 4 teams of 2 players. After you \n" 
 				+ "have defined your teams click on Start Game and three windows will show up. \n"
@@ -64,10 +64,12 @@ public class InstructionsPage extends JDialog {
 				+ "and the first team guesser is behind the computer click Start Timer on the timer \n"
 				+ "window. Now the clue giver should try to get through as many cards as they can \n" 
 				+ "until the timer window says Time's up. When Time's up appears it's time to \n" 
-				+ "click on the Next button in the game screen. The game will show a pop-up alert " 
+				+ "click on the Next button in the game screen. The game will show a pop-up alert \n" 
 				+ "telling you which team is next and what role each player should play. When the \n" 
 				+ "new team is ready to guess, you should click Start timer and play until the \n" 
-				+ "Timer's up alert shows up. Do this until there are no more cards");	
+				+ "Timer's up alert shows up. Do this until there are no more cards. When there are no \n"
+				+ " more cards, the Winning Page will be displayed with the rankings for each team that \n"
+				+ "that played the game.");	
 		txtrTest.setBounds(17, 52, 620, 418);
 		txtrTest.setEditable(false);
 		txtrTest.setAutoscrolls(true);
