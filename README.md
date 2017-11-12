@@ -22,9 +22,9 @@ It is a variation of the board game Taboo meant to be played on a single compute
    - on Windows, you can do this by clicking on your Start menu then typing run in the search box and clicking enter. In the run command type cmd and hit enter. You will see a DOS window open up now.
    - On Linux, you can do this by opening up whatever shell you have selected as your default. 
 1. make sure the mvn command ins on your path. On Windows, the easiest way to do this is to change directory to the location of the mvn exeutable
-1. run the command ```mvn clean install``
+1. run the command ```mvn clean install```
 1. run the command ```mvn package```
-1. run the command ```java -cp target\triviaGame-0.0.1-SNAPSHOT.jar se459Team9.triviaGame.Main```
+1. run the command ```java -cp target\triviaGame-1.0.0-SNAPSHOT.jar se459Team9.triviaGame.Main```
 
 Success! You should see the start screen of the game appear on your screen
 
